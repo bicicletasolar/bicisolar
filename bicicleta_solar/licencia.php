@@ -17,5 +17,4 @@
 
 
 
-<!-- hola mario-->
-<!-- proyecto-->
+<!-- Mario y Jose-->
