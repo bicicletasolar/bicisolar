@@ -1,7 +1,8 @@
 <?php
 
-namespace Bicicleta_solar\Modelo\BaseDatos;
+namespace bicicleta_solar\Modelo\BD;
 require_once __DIR__."/../Base/ReservaClass.php";
+require_once __DIR__."/bdGenerico.php";
 use bicicleta_solar\Modelo\Base;
 
 class bdReserva extends bdGenerico{

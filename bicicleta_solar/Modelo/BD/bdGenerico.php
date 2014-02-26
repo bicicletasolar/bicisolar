@@ -6,7 +6,7 @@
  * Time: 10:13
  */
 
-namespace Bicicleta_solar\Modelo\BaseDatos;
+namespace bicicleta_solar\Modelo\BD;
 
 use Bicicleta_solar\Modelo\Base\Reserva;
 use Bicicleta_solar\Modelo\Base\Usuario;

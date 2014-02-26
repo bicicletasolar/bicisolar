@@ -6,9 +6,9 @@
  * Time: 10:22
  */
 
-namespace Bicicleta_solar\Modelo\BaseDatos;
+namespace bicicleta_solar\Modelo\BD;
 require_once __DIR__."/../Base/UsuarioClass.php";
-use Bicicleta_solar\Modelo\Base;
+use bicicleta_solar\Modelo\Base;
 
 
 class bdUsuario extends bdGenerico{
