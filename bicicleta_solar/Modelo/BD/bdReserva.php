@@ -32,7 +32,11 @@ class bdReserva extends bdGenerico{
 
         $rs = mysql_query($query,$conexion) or die(mysql_error());
 
-        $usuario = parent::convertirArrays($rs, "Usuario");
+        if(mysql_affected_rows($query) == 1)
+        {
+            $fila = mysql_fetch_assoc($rs);
+            $usuario = new Usuario($fila['nombre']);
+        }
 
         parent:: cerrarConexion($conexion);
 
@@ -47,11 +51,15 @@ class bdReserva extends bdGenerico{
 
         $rs = mysql_query($query,$conexion) or die(mysql_error());
 
-        $usuario = parent::convertirArrays($rs, "Centro");
+        if(mysql_affected_rows($query) == 1)
+        {
+            $fila = mysql_fetch_assoc($rs);
+            $centro = new Centro($fila['id_centro'],$fila['nombre'],$fila['direccion']);
+        }
 
         parent:: cerrarConexion($conexion);
 
-        return $usuario;
+        return $centro;
     }
 
     public static function introducirReserva($reserva)

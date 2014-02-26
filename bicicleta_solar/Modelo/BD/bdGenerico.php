@@ -45,7 +45,7 @@ class BdGenerico {
             case "Centro":
                 while($fila=mysql_fetch_assoc($rs))
                 {
-                    $objetos[]=new Usuario($fila['id_centro'],$fila['nombre'],$fila['direccion']);
+                    $objetos[]=new Centro($fila['id_centro'],$fila['nombre'],$fila['direccion']);
                 }
 
 
