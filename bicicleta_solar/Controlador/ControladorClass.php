@@ -19,7 +19,7 @@ class Controlador{
 
     public static function logear($_POST)
     {
-echo "llega";
+        echo "llega";
         //$usuario=BD\bdUsuario::logear($_POST);
     }
 }
