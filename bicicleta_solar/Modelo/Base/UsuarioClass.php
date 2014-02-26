@@ -35,6 +35,10 @@ class Usuario {
             case 0:
                 $this->__construct1();
                 break;
+            case 1:
+                //Nos creamos un usuario solo con el nombre, por eso pasamos dos nulos,porque el nombre esta en el tercer lugar en el constructor1()
+                $this->__construct1(null,null,$args[0]);
+                break;
             case 2:
                 $this->__construct1($args[0],$args[1]);
                 break;
