@@ -35,7 +35,7 @@ class BdGenerico {
             case "Usuario":
                 while($fila=mysql_fetch_assoc($rs))
                 {
-                    $objetos[]=new Usuario($fila['nomnbre']);
+                    $objetos[]=new Usuario($fila['nombre']);
                 }
             case "Reserva":
                 while($fila=mysql_fetch_assoc($rs))

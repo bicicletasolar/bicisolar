@@ -2,7 +2,7 @@
 
 namespace Bicicleta_solar\Modelo\BaseDatos;
 require_once __DIR__."/../Base/ReservaClass.php";
-use Bicicleta_solar\Modelo\Base;
+use bicicleta_solar\Modelo\Base;
 
 class bdReserva extends bdGenerico{
 
@@ -20,6 +20,34 @@ class bdReserva extends bdGenerico{
 
         return $reservas;
 
+    }
+
+    public static function introducirReserva($reserva)
+    {
+        $conexion=parent::abrirConexion();
+
+        $query = "insert into reserva values(0,'".$reserva->getCentro()."','".$reserva->getEstado()."','".$reserva->getFechaFin()."')";
+
+        try
+        {
+            $res = mysql_query($query, $conexion);
+            if (!$res) {
+                $errno = mysql_errno($conexion);
+                $error = mysql_error($conexion);
+
+                switch ($errno) {
+                    default:
+                        throw new MySQLException($error, $errno);
+                        break;
+                }
+            }
+        }
+        catch (MySQLException $e) {
+            echo "Error.Codigo: ".$e->getCode()."\n Mensaje: ".$e->getMessage();
+            parent::cerrarConexion($conexion);
+        }
+
+        parent::cerrarConexion($conexion);
     }
 }
 ?>
