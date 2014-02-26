@@ -27,7 +27,7 @@ class bdReserva extends bdGenerico{
     {
         $conexion=parent::abrirConexion();
 
-        $query = "insert into reserva values(0,'".$reserva->getCentro()."','".$reserva->getEstado()."','".$reserva->getFechaFin()."')";
+        $query = "insert into reserva values(0,'".$reserva->getCentro()."','".$reserva->getEstado()."','".$reserva->getFechaFin()."','".$reserva->getFechaInicio()."','".$reserva->getHoraFin()."','".$reserva->getHoraInicio()."')";
 
         try
         {
