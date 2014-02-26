@@ -7,6 +7,8 @@
  */
 
 namespace Bicicleta_solar\Modelo\Base;
+use bicicleta_solar\Modelo\BD\bdReserva;
+
 require_once __DIR__."/UsuarioClass.php";
 
 class Reserva {
@@ -67,6 +69,9 @@ class Reserva {
      */
     public function getCentro()
     {
+        if(!isset($this->centro)){
+            $this->setCentro(bdReserva::getCentro());
+        }
         return $this->centro;
     }
 
@@ -179,6 +184,10 @@ class Reserva {
      */
     public function getUsuario()
     {
+        if(!isset($this->usuario)){
+            $this->setUsuario(bdReserva::getReserva($this));
+        }
+
         return $this->usuario;
     }
 
