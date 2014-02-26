@@ -6,14 +6,15 @@ require_once __DIR__.'/../Modelo/Base/UsuarioClass.php';
 
 use Bicicleta_solar\Modelo\Base\Usuario;
 session_start();
-if(isset($_SESSION))
+ob_start();
+if(isset($_SESSION['persona']))
 {
     $objeto=unserialize($_SESSION['persona']);
 
 }
 else
 {
-  
+  $objeto=null;
 }
 ?>
 
