@@ -61,7 +61,15 @@
           </div>
     </div>
     <div class="col-md-4">
-        Datos Persona con reserva
+        Datos Persona con reserva <br/>
+        <form name="form1" action="<?php echo $ruta ?>Controlador/Controlador_Puente.php?cod=3" method="post">
+            <label>Introduzca dni:</label>
+            <input type="text" name="dni"><br/>
+            <label>Introduzca contraseña:</label>
+            <input type="password" name="contrasena"><br/>
+            <input type="submit" name="enviar" value="Enviar">
+        </form>
+
     </div>
     </div>
     <!-- Fin de tabla reservas--> 
