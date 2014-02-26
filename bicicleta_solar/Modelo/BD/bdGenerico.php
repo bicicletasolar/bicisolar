@@ -8,7 +8,7 @@
 
 namespace Bicicleta_solar\Modelo\BaseDatos;
 
-
+use Bicicleta_solar\Modelo\Base\Reserva;
 use Bicicleta_solar\Modelo\Base\Usuario;
 
 class BdGenerico {
@@ -30,11 +30,17 @@ class BdGenerico {
 
     protected static function convertirArrays($rs,$clase){
         $objetos=array();
+
         switch($clase){
             case "Usuario":
                 while($fila=mysql_fetch_assoc($rs))
                 {
                     $objetos[]=new Usuario($fila['nomnbre']);
+                }
+            case "Reserva":
+                while($fila=mysql_fetch_assoc($rs))
+                {
+                    $objetos[]=new Reserva($fila['centro'],$fila['estado'],$fila['fechaFin'],$fila['fechaInicio'],$fila['horaFin'],$fila['horaInicio']);
                 }
 
 
