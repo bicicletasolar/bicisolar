@@ -1,10 +1,24 @@
+<?php
+//License:
+require_once __DIR__.'/../licencia.php';
+// require_once __DIR__.'/../Configuracion/conf.php';
+
+session_start();
+if(isset($_SESSION))
+{
+    $objeto=unserialize($_SESSION['persona']);
+
+}
+else
+{
+    session_destroy();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <?php
-        //License:
-        require_once __DIR__.'/../licencia.php';
-    ?>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,10 +39,12 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <script src="js/funciones.js"></script>
+
     <![endif]-->
   </head>
 
-  <body>
+  <body onload="dibujar()">
     <div class="container">
     <img src="img/logo.jpg" alt="egibide"/>
 
@@ -36,11 +52,11 @@
       <div class="masthead">
         <ul class="nav nav-justified">
           <li><a href="#">Presentación</a></li>
-          <li class="active"><a href="#">Reservas</a></li>
+          <li class="active"><a href="reservas.php">Reservas</a></li>
           <li><a href="#">Proyecto</a></li>
           <li><a href="#">Participantes</a></li>
           <li><a href="#">Patricionadores</a></li>
-          <li><a href="#">Baterías</a></li>
+          <li><a href="bateria.php">Baterías</a></li>
         </ul>
       </div>
       <!-- Fin Menú -->

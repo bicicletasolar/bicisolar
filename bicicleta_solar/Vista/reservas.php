@@ -1,9 +1,10 @@
 <?php
     require_once __DIR__.'/header.php';
+
 ?>
     <!-- Tabla de reservas-->
      <div class="row marginTop">
-      <div class="col-md-8">
+      <div class="col-md-7">
           <div class="panel panel-default ">
             <!-- Default panel contents -->
             <div class="panel-heading">Reservas</div>
@@ -60,32 +61,41 @@
             </table>
           </div>
     </div>
-    <div class="col-md-4">
-        Datos Persona con reserva <br/>
-        <form name="form1" action="<?php echo $ruta ?>Controlador/Controlador_Puente.php?cod=3" method="post">
-            <label>Introduzca dni:</label>
-            <input type="text" name="dni"><br/>
-            <label>Introduzca contraseña:</label>
-            <input type="password" name="contrasena"><br/>
-            <input type="submit" name="enviar" value="Enviar">
-        </form>
+         <?php
+            if(isset($objeto))
+            {?>
+                <div class="col-md-4">
+                    <h3 style="text-align: center">Bienvenido<?php $objeto->getNombre()?></h3><br/>
+                </div>
+            <?php
+            }
+            else
+            {?>
+                <div class="col-md-4">
+                    <h3 style="text-align: center">Datos Persona con reserva</h3><br/>
+                    <form name="form1" class="" action="<?php echo $ruta;?>Controlador/Controlador_Puente.php?cod=3" method="post">
+                        <div class="form-group">
+                            <label>Introduzca dni:</label>
+                            <input type="text" class="form-control" name="dni" placeholder="Dni"><br/>
+                        </div>
+                        <div class="form-group">
+                            <label>Introduzca contraseña:</label>
+                            <input type="password" class="form-control"  name="contrasena" placeholder="Contraseña"><br/>
+                        </div>
+                        <input type="submit" class="btn btn-primary" name="enviar" value="Enviar">
+                    </form>
+
+                </div>
+
+            <?php
+            }
+        ?>
+
+
 
     </div>
-    </div>
-    <!-- Fin de tabla reservas--> 
+    <!-- Fin de tabla reservas-->
 
-
-
-      <!-- Site footer -->
-      <div class="footer">
-        <p>&copy; bicicletas_baterias 2014</p>
-      </div>
-
-    </div> <!-- /container -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-  </body>
-</html>
+<?php
+require_once __DIR__.'/footer.php';
+?>
