@@ -17,7 +17,7 @@ class Controlador{
         BD\bdReserva::introducirReserva($datos);
     }
 
-    public static function logear($_POST)
+    public static function logear($post)
     {
         echo "llega";
         //$usuario=BD\bdUsuario::logear($_POST);
