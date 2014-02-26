@@ -1,7 +1,7 @@
 <?php
 //License:
 require_once __DIR__.'/../licencia.php';
-// require_once __DIR__.'/../Configuracion/conf.php';
+require_once __DIR__.'/../Configuracion/config.php';
 
 session_start();
 if(isset($_SESSION))
