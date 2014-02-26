@@ -28,7 +28,7 @@ class bdReserva extends bdGenerico{
     {
         $conexion=parent::abrirConexion();
 
-        $query="Select * from usuario where id_usuario=(Select id_usuario from reserva where id_reserva ='".$reserva->getIdReserva()."')";
+        $query="Select * from usuario where id_usuario=(Select id_Usuario from reserva where id_reserva ='".$reserva->getIdReserva()."')";
 
         $rs = mysql_query($query,$conexion) or die(mysql_error());
 
@@ -43,7 +43,7 @@ class bdReserva extends bdGenerico{
     {
         $conexion=parent::abrirConexion();
 
-        $query="Select * from centro where id_centro=(Select id_centro from reserva where id_centro ='".$reserva->getIdReserva()."')";
+        $query="Select * from centro where id_centro=(Select id_Centro from reserva where id_reserva ='".$reserva->getIdReserva()."')";
 
         $rs = mysql_query($query,$conexion) or die(mysql_error());
 
