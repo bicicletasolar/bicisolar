@@ -13,7 +13,7 @@ if(isset($_SESSION))
 }
 else
 {
-    session_destroy();
+  
 }
 ?>
 
