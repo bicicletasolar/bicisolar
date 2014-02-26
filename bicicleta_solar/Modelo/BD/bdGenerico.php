@@ -42,7 +42,11 @@ class BdGenerico {
                 {
                     $objetos[]=new Reserva($fila['centro'],$fila['estado'],$fila['fechaFin'],$fila['fechaInicio'],$fila['horaFin'],$fila['horaInicio']);
                 }
-
+            case "Centro":
+                while($fila=mysql_fetch_assoc($rs))
+                {
+                    $objetos[]=new Usuario($fila['id_centro'],$fila['nombre'],$fila['direccion']);
+                }
 
 
         }

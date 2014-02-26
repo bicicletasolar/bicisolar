@@ -4,6 +4,7 @@ namespace bicicleta_solar\Modelo\BD;
 require_once __DIR__."/../Base/ReservaClass.php";
 require_once __DIR__."/bdGenerico.php";
 use bicicleta_solar\Modelo\Base;
+use Bicicleta_solar\Modelo\Base\Reserva;
 
 class bdReserva extends bdGenerico{
 
@@ -21,6 +22,36 @@ class bdReserva extends bdGenerico{
 
         return $reservas;
 
+    }
+
+    public static function getUsuario(Reserva $reserva)
+    {
+        $conexion=parent::abrirConexion();
+
+        $query="Select * from usuario where id_usuario=(Select id_usuario from reserva where id_reserva ='".$reserva->getIdReserva()."')";
+
+        $rs = mysql_query($query,$conexion) or die(mysql_error());
+
+        $usuario = parent::convertirArrays($rs, "Usuario");
+
+        parent:: cerrarConexion($conexion);
+
+        return $usuario;
+    }
+
+    public static function getCentro(Reserva $reserva)
+    {
+        $conexion=parent::abrirConexion();
+
+        $query="Select * from centro where id_centro=(Select id_centro from reserva where id_centro ='".$reserva->getIdReserva()."')";
+
+        $rs = mysql_query($query,$conexion) or die(mysql_error());
+
+        $usuario = parent::convertirArrays($rs, "Centro");
+
+        parent:: cerrarConexion($conexion);
+
+        return $usuario;
     }
 
     public static function introducirReserva($reserva)
