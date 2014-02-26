@@ -7,7 +7,7 @@
  */
 
 namespace Bicicleta_solar\Modelo\Base;
-
+require_once __DIR__."/UsuarioClass.php";
 
 class Reserva {
     private $id_reserva;
@@ -29,8 +29,12 @@ class Reserva {
         $this->setHoraInicio($horaInicio);
         $this->setHoraFin($horaFin);
         $this->setEstado($estado);
+        if($usuario){
         $this->setUsuario($usuario);
+        }
+        if($centro){
         $this->setCentro($centro);
+        }
 
     }
 
