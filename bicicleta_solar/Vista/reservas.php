@@ -62,10 +62,14 @@
           </div>
     </div>
          <?php
-            if(isset($objeto))
+            if($objeto)
             {?>
                 <div class="col-md-4">
-                    <h3 style="text-align: center">Bienvenido<?php $objeto->getNombre()?></h3><br/>
+                    <h3 style="text-align: center">Bienvenido<?php
+
+                            echo $objeto->getNombre();
+
+                        ?></h3><br/>
                 </div>
             <?php
             }
