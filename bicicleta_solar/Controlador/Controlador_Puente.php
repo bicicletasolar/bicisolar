@@ -7,6 +7,9 @@ use bicicleta_solar\Controlador\Controlador;
                 Controlador::introducirReserva($_POST);
                 break;
 
+            case 3:
+                   Controlador::logear($_POST);
+                break;
     }
 
 ?>

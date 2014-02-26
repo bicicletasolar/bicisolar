@@ -2,16 +2,23 @@
 
 namespace bicicleta_solar\Controlador;
 require_once __DIR__."/../Modelo/BD/bdReserva.php";
-use bicicleta_solar\Modelo\BD\bdReserva;
+use bicicleta_solar\Modelo\BD;
+
 class Controlador{
 
     public static function getReservas(){
-       $reservas= bdReserva::getReservas();
+       $reservas= BD\bdReserva::getReservas();
 
         return $reservas;
 }
     public static function introducirReserva($datos){
-        bdReserva::introducirReserva($datos);
+        BD\bdReserva::introducirReserva($datos);
+    }
+
+    public static function logear($_POST)
+    {
+
+        $usuario=BD\bdUsuario::logear($_POST);
     }
 }
 
