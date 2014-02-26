@@ -7,7 +7,7 @@ use bicicleta_solar\Modelo\Base;
 
 class bdReserva extends bdGenerico{
 
-    public static function getReserva()
+    public static function getReservas() // Metodo para recoger todas las reservas realizadas
     {
         $conexion=parent::abrirConexion();
 

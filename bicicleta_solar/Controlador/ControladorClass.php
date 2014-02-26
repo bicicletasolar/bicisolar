@@ -6,7 +6,9 @@ use bicicleta_solar\Modelo\BD\bdReserva;
 class Controlador{
 
     public static function getReservas(){
-       $reservas= bdReserva::getReserva();
+       $reservas= bdReserva::getReservas();
+
+        return $reservas;
 }
     public static function introducirReserva($datos){
         bdReserva::introducirReserva($datos);
