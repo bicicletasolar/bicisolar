@@ -20,10 +20,11 @@ class Reserva {
     private $estado;
     private $usuario;
     private $centro;
+    private $bicicleta;
 
 
 
-    private function __construct1($centro=null, $estado=null, $fechaFin=null, $fechaInicio=null, $horaFin=null, $horaInicio=null, $id_reserva=null, $usuario=null)
+    private function __construct1($centro=null, $estado=null, $fechaFin=null, $fechaInicio=null, $horaFin=null, $horaInicio=null, $id_reserva=null, $usuario=null,$bicicleta=null)
     {
         $this->setIdReserva($id_reserva);
         $this->setFechaInicio($fechaInicio);
@@ -36,6 +37,9 @@ class Reserva {
         }
         if($centro){
         $this->setCentro($centro);
+        }
+        if($bicicleta){
+            $this->setBicicleta($bicicleta);
         }
 
     }
@@ -52,6 +56,9 @@ class Reserva {
                 break;
             case 8:
                 $this->__construct1($args[0],$args[1],$args[2],$args[3],$args[4],$args[5],$args[6],$args[7]);
+                break;
+            case 9:
+                $this->__construct1($args[0],$args[1],$args[2],$args[3],$args[4],$args[5],$args[6],$args[7],$args[8]);
                 break;
         }
     }
@@ -190,6 +197,28 @@ class Reserva {
 
         return $this->usuario;
     }
+
+    /**
+     * @param mixed $bicicleta
+     */
+    public function setBicicleta($bicicleta)
+    {
+        $this->bicicleta = $bicicleta;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBicicleta()
+    {
+        if(!isset($this->bicicleta)){
+            $this->setBicicleta(bdReserva::getBicicleta($this));
+        }
+
+        return $this->bicicleta;
+    }
+
+
 
 
 

@@ -7,16 +7,22 @@
  */
 
 namespace Bicicleta_solar\Modelo\Base;
-require_once "BateriaClass.php";
+
+require_once "/BateriaClass.php";
+require_once "/CentroClass.php";
+
+use Bicicleta_solar\Modelo\Base\Centro;
 
 class ArbolSolar {
 
     private $id_ArbolSolar;
+    private $centro; //Relacion con el centro
 
-    function __construct($id_ArbolSolar,$corriente=null, $tension=null, $carga=null)
+    function __construct($id_ArbolSolar,$centro,$corriente=null, $tension=null, $carga=null)
     {
         new Bateria($corriente,$tension,$carga);
         $this->id_ArbolSolar = $id_ArbolSolar;
+        $this->setCentro($centro);
     }
 
     /**
@@ -33,6 +39,27 @@ class ArbolSolar {
     public function getIdArbolSolar()
     {
         return $this->id_ArbolSolar;
+    }
+
+    /**
+     * @param mixed $centro
+     */
+    public function setCentro(Centro $centro)
+    {
+        $this->centro = $centro;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCentro()
+    {
+        if(!isset($this->centro)){
+            $this->setCentro(bdArbol::getCentro($this));
+        }
+
+        return $this->centro;
+
     }
 
 

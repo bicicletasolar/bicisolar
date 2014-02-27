@@ -6,11 +6,14 @@
  * Time: 9:44
  */
 
+namespace Bicicleta_solar\Modelo\Base;
+
 class Centro {
 
     private $id_centro;
     private $nombre;
     private $direccion;
+    private $arboles; // Relacion
 
     private function __construct1($id_centro=null,$nombre=null,$direccion=null)
     {
@@ -72,6 +75,20 @@ class Centro {
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+    public function addArbol(ArbolSolar $arbol)
+    {
+        $this->arboles[]= $arbol;
+        $arbol->setCentro($this);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArboles()
+    {
+        return $this->arboles;
     }
 
 
