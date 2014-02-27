@@ -5,7 +5,9 @@ require_once __DIR__."/../Modelo/BD/bdReserva.php";
 require_once __DIR__."/../Modelo/BD/bdUsuario.php";
 require_once __DIR__."/../Modelo/Base/ReservaClass.php";
 require_once __DIR__."/../Modelo/Base/CentroClass.php";
-use Bicicleta_solar\Modelo\Base\Reserva;
+require_once __DIR__."/../Modelo/Base/UsuarioClass.php";
+
+use Bicicleta_solar\Modelo\Base;
 use bicicleta_solar\Modelo\BD;
 
 class Controlador{
@@ -16,12 +18,12 @@ class Controlador{
         return $reservas;
 }
     public static function introducirReserva($datos){
-        $reserva=new Reserva();
+        $reserva=new Base\Reserva();
         $reserva->setFechaInicio($datos['fechaInicio']);
         $reserva->setFechaFin($datos['fechaFin']);
         $reserva->setHoraInicio($datos['horaInicio']);
         $reserva->setHoraFin($datos['horaFin']);
-        $centro=new Centro();
+        $centro=new Base\Centro();
         $centro->setNombre($datos['centro']);
         $reserva->setCentro($centro);
         $usuario=unserialize($_SESSION['persona']);
@@ -31,8 +33,35 @@ class Controlador{
 
     public static function logear($post)
     {
-        echo "llega";
-        //$usuario=BD\bdUsuario::logear($_POST);
+
+
+        $usu=new Base\Usuario();
+        $usu->setDni($post['dni']);
+        $usu->setPassword($post['contrasena']);
+
+        $usuario=BD\bdUsuario::logear($usu);
+        var_dump($usuario);
+        die();
+        if(is_a($usuario,"bicisolar\trunk\bicicleta_solar\Modelo\Base\Usuario"))
+        {
+            echo "llega";
+            die();
+            $_SESSION['persona']=serialize($usuario);
+            ob_clean();
+
+            header('Location:../Vista/reservas.php');
+            exit;
+
+        }
+        else
+        {
+            echo "fier";
+            die();
+            //enviar a pantalla inicial
+
+        }
+
+
     }
 }
 
