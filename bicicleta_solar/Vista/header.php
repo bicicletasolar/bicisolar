@@ -33,7 +33,13 @@ else
     <link href="dist/css/justified-nav.css" rel="stylesheet">
 
     <title>Bicicleta_Solar</title>
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -42,19 +48,28 @@ else
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <script src="js/funciones.js"></script>
-
     <![endif]-->
+
+      <script src="js/funciones.js"></script>
+      <script>
+          $(document).ready(function()
+              $('#boton').click(function(){
+                  alert("hello");
+              });
+          });
+
+      </script>
   </head>
 
   <body onload="dibujar()">
+
     <div class="container">
     <img src="img/logo.jpg" alt="egibide"/>
 
       <!-- Menú -->
       <div class="masthead">
-        <ul class="nav nav-justified">
-          <li><a href="#">Presentación</a></li>
+        <ul class="nav nav-justified" id="menu">
+          <li><a href="#" id="boton">Presentación</a></li>
           <li><a href="reservas.php">Reservas</a></li>
           <li><a href="#">Proyecto</a></li>
           <li><a href="#">Participantes</a></li>
