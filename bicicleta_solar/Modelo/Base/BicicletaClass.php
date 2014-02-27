@@ -12,8 +12,9 @@ require_once "BateriaClass.php";
 class Bicicleta {
     private $id_bicicleta;
 
-    function __construct($id_bicicleta)
+    function __construct($id_bicicleta,$corriente=null, $tension=null, $carga=null)
     {
+        new Bateria($corriente,$tension,$carga);
         $this->id_bicicleta = $id_bicicleta;
     }
 

@@ -13,8 +13,9 @@ class ArbolSolar {
 
     private $id_ArbolSolar;
 
-    function __construct($id_ArbolSolar)
+    function __construct($id_ArbolSolar,$corriente=null, $tension=null, $carga=null)
     {
+        new Bateria($corriente,$tension,$carga);
         $this->id_ArbolSolar = $id_ArbolSolar;
     }
 
