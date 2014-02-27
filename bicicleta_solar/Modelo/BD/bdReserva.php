@@ -65,8 +65,9 @@ class bdReserva extends bdGenerico{
     public static function introducirReserva($reserva)
     {
         $conexion=parent::abrirConexion();
+        mysql_query("START TRANSACTION");
 
-        $query = "insert into reserva values(0,'".$reserva->getCentro()."','".$reserva->getEstado()."','".$reserva->getFechaFin()."','".$reserva->getFechaInicio()."','".$reserva->getHoraFin()."','".$reserva->getHoraInicio()."')";
+        $query = "insert into reserva values(0,'".$reserva->getFechaInicio()."','".$reserva->getFechaFin()."','".$reserva->getHoraInicio()."','".$reserva->getHoraFin()."','".$reserva->getEstado()."','".$reserva->getUsuario()->getIdUsuario()."','".$reserva->getCentro()->getIdCentro()."')";
 
         try
         {
@@ -84,10 +85,14 @@ class bdReserva extends bdGenerico{
         }
         catch (MySQLException $e) {
             echo "Error.Codigo: ".$e->getCode()."\n Mensaje: ".$e->getMessage();
+            mysql_query("ROLLBACK");
             parent::cerrarConexion($conexion);
         }
+
+        mysql_query("COMMIT");
 
         parent::cerrarConexion($conexion);
     }
 }
 ?>
+

@@ -70,7 +70,7 @@ class Reserva {
     public function getCentro()
     {
         if(!isset($this->centro)){
-            $this->setCentro(bdReserva::getCentro());
+            $this->setCentro(bdReserva::getCentro($this));
         }
         return $this->centro;
     }
