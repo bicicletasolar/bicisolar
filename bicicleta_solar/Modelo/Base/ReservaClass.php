@@ -41,7 +41,6 @@ class Reserva {
         if($bicicleta){
             $this->setBicicleta($bicicleta);
         }
-
     }
 
 
