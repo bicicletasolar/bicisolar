@@ -62,10 +62,11 @@
           </div>
     </div>
          <?php
-            if($objeto)
+         if(isset($_SESSION['persona']))
+
             {?>
                 <div class="col-md-4">
-                    <h3 style="text-align: center">Bienvenido<?php
+                    <h3 style="text-align: center">Bienvenido <?php
 
                             echo $objeto->getNombre();
 

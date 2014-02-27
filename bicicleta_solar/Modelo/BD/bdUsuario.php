@@ -18,7 +18,8 @@ class bdUsuario extends bdGenerico{
 
         $rs=mysql_query($query);
 
-        if(mysql_affected_rows($conexion) == 1){
+        if(mysql_num_rows($rs)==1)
+        {
             $fila = mysql_fetch_assoc($rs);
 
             $usuario->setDni($fila['dni']);
@@ -27,14 +28,12 @@ class bdUsuario extends bdGenerico{
             $usuario->setPassword($fila['password']);
         }
         else{
-            $fila = mysql_fetch_assoc($rs);
-            echo "hola".$fila['nombre'];
-            echo" no encuantra";
+
+
         }
 
         parent::cerrarConexion($conexion);
-        var_dump($usuario);
-        die();
+
         return $usuario;
     }
 } 

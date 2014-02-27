@@ -17,7 +17,7 @@ class BdGenerico {
         $servidor="localhost";
         $usuario="root";
         $pass="";
-        $base_datos="bicileta_solar";
+        $base_datos="bicicleta_solar";
         $conexion=mysql_connect($servidor,$usuario,$pass);
         mysql_select_db($base_datos,$conexion);
         return $conexion;

@@ -40,12 +40,11 @@ class Controlador{
         $usu->setPassword($post['contrasena']);
 
         $usuario=BD\bdUsuario::logear($usu);
-        var_dump($usuario);
-        die();
-        if(is_a($usuario,"bicisolar\trunk\bicicleta_solar\Modelo\Base\Usuario"))
+
+        if(is_a($usuario,"bicicleta_solar\Modelo\Base\Usuario"))
         {
-            echo "llega";
-            die();
+            session_start();
+            ob_start();
             $_SESSION['persona']=serialize($usuario);
             ob_clean();
 
@@ -55,8 +54,7 @@ class Controlador{
         }
         else
         {
-            echo "fier";
-            die();
+
             //enviar a pantalla inicial
 
         }
