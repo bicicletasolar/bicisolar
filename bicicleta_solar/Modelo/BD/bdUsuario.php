@@ -21,16 +21,14 @@ class bdUsuario extends bdGenerico{
         if(mysql_num_rows($rs)==1)
         {
             $fila = mysql_fetch_assoc($rs);
-
             $usuario->setDni($fila['dni']);
             $usuario->setNombre($fila['nombre']);
             $usuario->setIdUsuario($fila['id_usuario']);
             $usuario->setPassword($fila['password']);
         }
         else{
-
-
-        }
+            $usuario="Usuario o contraseña icorrecta";
+         }
 
         parent::cerrarConexion($conexion);
 

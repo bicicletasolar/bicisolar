@@ -71,11 +71,18 @@
                             echo $objeto->getNombre();
 
                         ?></h3><br/>
+
                 </div>
             <?php
             }
             else
-            {?>
+            {
+                if(isset($_GET['men'])){
+                    echo $_GET['men'];
+
+                }
+                ?>
+
                 <div class="col-md-4">
                     <h3 style="text-align: center">Datos Persona con reserva</h3><br/>
                     <form name="form1" class="" action="<?php echo $ruta;?>Controlador/Controlador_Puente.php?cod=3" method="post">

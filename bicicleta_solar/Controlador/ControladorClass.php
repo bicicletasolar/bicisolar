@@ -54,7 +54,7 @@ class Controlador{
         }
         else
         {
-
+            header('Location:../Vista/reservas.php?men='.$usuario);
             //enviar a pantalla inicial
 
         }
