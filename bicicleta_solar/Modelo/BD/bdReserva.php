@@ -4,6 +4,7 @@ namespace bicicleta_solar\Modelo\BD;
 require_once __DIR__."/../Base/ReservaClass.php";
 require_once __DIR__."/bdGenerico.php";
 use bicicleta_solar\Modelo\Base;
+use Bicicleta_solar\Modelo\Base\Bicicleta;
 use Bicicleta_solar\Modelo\Base\Reserva;
 
 class bdReserva extends bdGenerico{
@@ -92,6 +93,25 @@ class bdReserva extends bdGenerico{
         mysql_query("COMMIT");
 
         parent::cerrarConexion($conexion);
+    }
+
+    public static function getBicicleta(Reserva $reserva)
+    {
+        $conexion=parent::abrirConexion();
+
+        $query="Select * from bicicleta where id_bicicleta=(Select id_bicicleta from reserva where id_bicicleta ='".$reserva->getBicicleta()."')";
+//Comprobar Query
+        $rs = mysql_query($query,$conexion) or die(mysql_error());
+
+        if(mysql_affected_rows($query) == 1)
+        {
+            $fila = mysql_fetch_assoc($rs);
+            $bicicleta = new Bicicleta($fila['id']); // FALLA CONSTRUCTOR
+        }
+
+        parent:: cerrarConexion($conexion);
+
+        return $bicicleta;
     }
 }
 ?>
