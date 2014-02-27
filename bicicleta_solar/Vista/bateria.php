@@ -14,7 +14,7 @@ require_once __DIR__.'/header.php';
 
 
         <!-- Gráfico de bateria-->
-        <div class="col-md-3">
+        <div class="col-md-3 centered">
             <h2 style="text-align: center">Grafico de Batería</h2>
 
 
