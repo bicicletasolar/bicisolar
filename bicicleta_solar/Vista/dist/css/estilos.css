@@ -110,3 +110,29 @@ vertical-align: middle;
 
 /* Fin Diseño de Tabla */
 
+.dia{
+    font-weight: 200;
+    font-size: 10pt;
+}
+
+th
+{
+    text-align: center !important;
+}
+.marginTop{
+    margin-top:12px;
+}
+.puntero{
+    cursor: hand;
+}
+.centrado{
+    text-align:center;
+    font-weight: bold;
+}
+.findeSemana{
+    background-color: #F9F9F9;
+}
+th img{
+    width:20px;
+    cursor: hand;
+}
