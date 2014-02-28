@@ -11,10 +11,11 @@ require_once "BateriaClass.php";
 
 class Bicicleta {
     private $id_bicicleta;
+    private $bateria;
 
-    function __construct($id_bicicleta,$corriente=null, $tension=null, $carga=null)
+    function __construct($id_bicicleta,Bateria $bateria)
     {
-        new Bateria($corriente,$tension,$carga);
+        $this->bateria = $bateria;
         $this->id_bicicleta = $id_bicicleta;
     }
 
@@ -33,6 +34,24 @@ class Bicicleta {
     {
         return $this->id_bicicleta;
     }
+
+    /**
+     * @param \Bicicleta_solar\Modelo\Base\Bateria $bateria
+     */
+    public function setBateria($bateria)
+    {
+        $this->bateria = $bateria;
+    }
+
+    /**
+     * @return \Bicicleta_solar\Modelo\Base\Bateria
+     */
+    public function getBateria()
+    {
+        return $this->bateria;
+    }
+
+
 
 
 

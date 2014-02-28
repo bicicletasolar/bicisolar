@@ -23,7 +23,9 @@ class ArbolSolar {
     {
         $this->bateria = $bateria;
         $this->id_ArbolSolar = $id_ArbolSolar;
-        $this->setCentro($centro);
+        if($centro){
+            $this->setCentro($centro);
+        }
     }
 
     /**
@@ -62,6 +64,24 @@ class ArbolSolar {
         return $this->centro;
 
     }
+
+    /**
+     * @param \Bicicleta_solar\Modelo\Base\Bateria $bateria
+     */
+    public function setBateria($bateria)
+    {
+        $this->bateria = $bateria;
+    }
+
+    /**
+     * @return \Bicicleta_solar\Modelo\Base\Bateria
+     */
+    public function getBateria()
+    {
+        return $this->bateria;
+    }
+
+
 
 
 
