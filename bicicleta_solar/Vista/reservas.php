@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__.'/header.php';
+?>
 <title>Reservas</title>
 <meta charset="utf-8">
 <script>
@@ -175,9 +178,7 @@
 </head>
 
 <body onload="meses()">
-<?php
-   // $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-?>
+
 <div class="container">
     <img src="img/logo.jpg" alt="egibide"/>
 
@@ -193,10 +194,7 @@
         </ul>
     </div>
     <!-- Fin Menú -->
-<?php
-    require_once __DIR__.'/header.php';
 
-?>
 
     <!-- Tabla de reservas-->
      <div class="row marginTop">

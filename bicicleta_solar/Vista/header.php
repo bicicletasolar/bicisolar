@@ -1,12 +1,13 @@
 <?php
+session_start();
 //License:
 require_once __DIR__.'/../licencia.php';
 require_once __DIR__.'/../Configuracion/config.php';
 require_once __DIR__.'/../Modelo/Base/UsuarioClass.php';
 
 use Bicicleta_solar\Modelo\Base\Usuario;
-session_start();
-ob_start();
+
+
 if(isset($_SESSION['persona']))
 {
     $objeto=unserialize($_SESSION['persona']);

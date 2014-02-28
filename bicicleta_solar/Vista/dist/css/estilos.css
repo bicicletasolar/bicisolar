@@ -123,7 +123,7 @@ th
     margin-top:12px;
 }
 .puntero{
-    cursor: hand;
+    cursor: pointer;
 }
 .centrado{
     text-align:center;
@@ -134,5 +134,5 @@ th
 }
 th img{
     width:20px;
-
+    cursor: pointer;
 }
