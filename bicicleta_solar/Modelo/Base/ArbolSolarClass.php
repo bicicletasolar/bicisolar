@@ -17,10 +17,11 @@ class ArbolSolar {
 
     private $id_ArbolSolar;
     private $centro; //Relacion con el centro
+    private $bateria;
 
-    function __construct($id_ArbolSolar,$centro,$corriente=null, $tension=null, $carga=null)
+    function __construct($id_ArbolSolar,$centro,Bateria $bateria)
     {
-        new Bateria($corriente,$tension,$carga);
+        $this->bateria = $bateria;
         $this->id_ArbolSolar = $id_ArbolSolar;
         $this->setCentro($centro);
     }
