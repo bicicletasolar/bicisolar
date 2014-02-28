@@ -18,7 +18,7 @@ class bdArbol extends BdGenerico{
     {
         $conexion=parent::abrirConexion();
 
-        $query="";
+        $query="Select * from centro where id_centro=(Select id_centro from arbol where id_ArbolSolar='".$arbol->getIdArbolSolar()."')";
 
         $rs = mysql_query($query,$conexion) or die(mysql_error());
 

@@ -15,7 +15,7 @@ class bdUsuario extends bdGenerico{
 
     public static function logear(Usuario $usuario){
         $conexion=parent::abrirConexion();
-        
+
         $query="select * from usuario where dni ='".$usuario->getDni()."'and password ='".$usuario->getPassword()."'";
 
         $rs=mysql_query($query);
