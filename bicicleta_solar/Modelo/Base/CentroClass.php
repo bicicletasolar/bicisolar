@@ -23,7 +23,7 @@ class Centro {
 
     }
 
-    private function __construct()
+    public function __construct()
     {
         $nargs=func_num_args();
         $args=func_get_args();
