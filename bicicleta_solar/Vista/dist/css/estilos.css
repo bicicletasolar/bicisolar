@@ -130,9 +130,15 @@ th
     font-weight: bold;
 }
 .findeSemana{
-    background-color: #F9F9F9;
+    background-color: #E7E7E7;
 }
 th img{
-    width:20px;
-    cursor: pointer;
+     width:20px !important;
+     cursor: pointer;
+ }
+
+.nohabil{
+    background-color: #E7E7E7;
+}
+.habil{
 }
