@@ -192,14 +192,20 @@ require_once __DIR__.'/header.php';
 
     function activarHora(hora){
         capa =  document.getElementById(hora.id);
+        existe = true;
         validar = true;
+        validarDia = true;
         for(var x in reserva){
             if(reserva[x]==capa.id){
                 delete reserva[x];
+                existe = false;
+            }
+            if(reserva[0]>capa.id){
                 validar = false;
             }
+
         }
-        if(validar){
+        if(existe && validar ){
             capa.src="img/si.png";
             reserva.push(hora.id);
         }else{
@@ -259,110 +265,110 @@ require_once __DIR__.'/header.php';
                 </tr>
                 <tr>
                     <th>8:00 - 9:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="8l" id="8l"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="8m" id="8m"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="8x" id="8x"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="8j" id="8j"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="8v" id="8v"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="81" id="81"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="82" id="82"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="83" id="83"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="84" id="84"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="85" id="85"/></th>
                 </tr>   
 
                 <tr>
                     <th>9:00 - 10:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="9l"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="9m"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="9x"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="9j"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="9v"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="91"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="92"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="93"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="94"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="95"/></th>
                 </tr>
 
                 <tr>
                     <th>10:00 - 11:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="10l"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="10m"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="10x"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="10j"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="10v"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="101"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="102"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="103"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="104"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="105"/></th>
                 </tr>
 
                 <tr>
                     <th>11:00 - 11:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="11l"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="11m"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="11x"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="11j"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="11v"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="111"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="112"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="113"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="114"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="115"/></th>
                 </tr>
 
                 <tr>
                     <th>11:00 - 12:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="12l"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="12m"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="12x"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="12j"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="12v"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="121"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="122"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="123"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="124"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="125"/></th>
                 </tr>
 
                 <tr>
                     <th>12:00 - 13:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="13l"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="13m"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="13x"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="13j"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="13v"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="131"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="132"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="133"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="134"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="135"/></th>
                 </tr>
 
                 <tr>
                     <th>14:00 - 15:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="14l"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="14m"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="14x"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="14j"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="14v"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="141"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="142"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="143"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="144"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="145"/></th>
                 </tr>
 
                 <tr>
                     <th>15:00 - 16:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="15l"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="15m"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="15x"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="15j"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="15v"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="151"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="152"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="153"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="154"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="155"/></th>
                 </tr>
 
                 <tr>
                     <th>16:00 - 17:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="16l"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="16m"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="16x"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="16j"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="16v"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="161"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="162"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="163"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="164"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="165"/></th>
                 </tr>
 
                 <tr>
                     <th>17:00 - 18:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="17l"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="17m"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="17x"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="17j"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="17v"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="171"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="172"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="173"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="174"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="175"/></th>
                 </tr>
 
                 <tr>
                     <th>18:00 - 19:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="18l"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="18m"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="18x"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="18j"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="18v"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="181"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="182"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="183"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="184"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="185"/></th>
                 </tr>
 
                 <tr>
                     <th>19:00 - 20:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="19l"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="19m"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="19x"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="19j"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="19v"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="191"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="192"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="193"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="194"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" alt="" id="195"/></th>
                 </tr>
             </table>
           </div>
