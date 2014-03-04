@@ -13,11 +13,7 @@ use bicicleta_solar\Modelo\BD;
 
 class Controlador{
 
-    public static function getReservas(){
-       $reservas= BD\bdReserva::getReservas();
 
-        return $reservas;
-}
     public static function introducirReserva($datos){
         $reserva=new Base\Reserva();
         $reserva->setFechaInicio($datos['fechaInicio']);
@@ -68,6 +64,8 @@ class Controlador{
         $centros=BD\bdCentro::dameCentros();
         return $centros;
     }
+
+
 }
 
 ?>
