@@ -227,7 +227,7 @@ use Bicicleta_solar\Modelo\Base\Centro;
 <body onload="meses()">
 
 <div class="container">
-    <img src="img/logo.jpg" class="" egibide"/>
+    <img src="img/logo.jpg" class="egibide" />
 
     <!-- Menú -->
     <div class="masthead">
