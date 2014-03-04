@@ -1,9 +1,10 @@
 <?php
-require_once __DIR__.'/header.php';
-require_once __DIR__.'/../Controlador/ControladorClass.php';
-require_once __DIR__.'/../Modelo/Base/CentroClass.php';
-use Bicicleta_solar\Controlador\Controlador;
-use Bicicleta_solar\Modelo\Base\Centro;
+
+    require_once __DIR__.'/header.php';
+    require_once __DIR__.'/../Controlador/ControladorClass.php';
+    require_once __DIR__.'/../Modelo/Base/CentroClass.php';
+
+    use bicicleta_solar\Controlador\Controlador;
 
 
 ?>
@@ -19,6 +20,9 @@ use Bicicleta_solar\Modelo\Base\Centro;
     var dia;
     var mesesIn;
     var reserva;
+    var valido;
+    var diasReserva;
+    var horasReserva;
 
     function meses(){
         reserva = new Array();
@@ -201,12 +205,12 @@ use Bicicleta_solar\Modelo\Base\Centro;
 
         for(var x in reserva){
             if(reserva[x]==capa.id){
-                delete reserva[x];
+                //delete reserva[x];
+                reserva.splice(x,1);
                 existe = false;
             }
 
-                //document.getElementById("errorHoras").style.visibility="visible";
-                //document.getElementById("errorHoras").innerHTML="Las horas deben ser continuas";
+
 
         }
         if(existe){
@@ -217,15 +221,92 @@ use Bicicleta_solar\Modelo\Base\Centro;
         }
 
     }
+    function reservar(){
+      validar();
+      if(valido){
+          diaReserva =document.getElementById("dia"+diasReserva[0]).textContent;
+          mesReserva = mes+1;
+          anioReserva = document.getElementById("anio").textContent;
+          horaInicio= horasReserva[0];
+          horaFin = parseInt(horasReserva[horasReserva.length-1])+1;
+          horaFin = horaFin.toString();
+          fechaReserva = new Date(anioReserva+"-"+mesReserva+"-"+diaReserva);
+          centroReserva = document.getElementById("centro").value;
+          biciReserva = document.getElementById("bici").value;
 
+          r = new Reserva(fechaReserva,horaInicio,horaFin);
+          r.addCentro(centroReserva);
+          r.addBici(biciReserva);
+
+         console.log(r);
+
+      }
+    }
+    function validar(){
+        diasReserva=new Array();
+        horasReserva=new Array();
+        reservaValido = false;
+        diasValido = false;
+        horasValido = false;
+
+        valido = false;
+        reserva = reserva.sort();
+
+        //Validar que reservas no está vacío
+        if(reserva.length==0)
+        {
+            document.getElementById("errorHoras").style.visibility="visible";
+            document.getElementById("errorHoras").innerHTML="Seleccione al menos una hora";
+        }
+        else
+        {
+            document.getElementById("errorHoras").style.visibility="hidden";
+            reservaValido = true;
+
+            // Validar que la reserva es para un día
+            for(var x in reserva){
+                diasReserva[x]=reserva[x].charAt(reserva[x].length-1); // Cogemos el día 3
+                horasReserva[x]=reserva[x].substr(0,reserva[x].length-1); //Cogemos la hora
+                horasReserva = horasReserva.sort(); // Ordenar horas
+            }
+
+            for(i = 0; i < diasReserva.length && diasReserva[0] == diasReserva[i]; i++);
+            if(i == diasReserva.length){
+                diasValido = true;
+                document.getElementById("errorHoras").style.visibility="hidden";
+                //Validar horas continuas
+                for(i = 0; i < horasReserva.length && parseInt(horasReserva[0])+i==horasReserva[i];i++);
+                if(i == horasReserva.length){
+                    horasValido = true;
+                    document.getElementById("errorHoras").style.visibility="hidden";
+                }else{
+                    document.getElementById("errorHoras").style.visibility="visible";
+                    document.getElementById("errorHoras").innerHTML="Todas las horas deben ser contínuas";
+                }
+            }else{
+                document.getElementById("errorHoras").style.visibility="visible";
+                document.getElementById("errorHoras").innerHTML="La reserva debe de ser para máximo un día";
+            }
+        }
+
+                //PENDIENTE VALIDAR DIAS VACIOS
+
+        if(diasValido && horasValido && reservaValido)
+            valido = true;
+
+    }
 
 </script>
 </head>
 
 <body onload="meses()">
+<?php
+    $centros = Controlador::sacarCentros();
 
+
+?>
 <div class="container">
-    <img src="img/logo.jpg" class="egibide" />
+    <img src="img/logo.jpg" class="" egibide"/>
 
     <!-- Menú -->
     <div class="masthead">
@@ -269,145 +350,156 @@ use Bicicleta_solar\Modelo\Base\Centro;
                 </tr>
                 <tr>
                     <th>8:00 - 9:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="img1" 81" id="81"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="img2" 82" id="82"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="img3" 83" id="83"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="img4" 84" id="84"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="img5" 85" id="85"/></th>
-                </tr>   
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="img1" id="081"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="img2" id="082"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="img3" id="083"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="img4" id="084"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="img5" id="085"/></th>
+                </tr>
 
                 <tr>
                     <th>9:00 - 10:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 91" id="91"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 92" id="92"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 93" id="93"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 94" id="94"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 95" id="95"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="091"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="092"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="093"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="094"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="095"/></th>
                 </tr>
 
                 <tr>
                     <th>10:00 - 11:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 101" id="101"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 102" id="102"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 103" id="103"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 104" id="104"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 105" id="105"/></th>
-                </tr>
-
-                <tr>
-                    <th>11:00 - 11:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 111" id="111"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 112" id="112"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 113" id="113"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 114" id="114"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 115" id="115"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="101"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="102"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="103"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="104"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="105"/></th>
                 </tr>
 
                 <tr>
                     <th>11:00 - 12:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 121" id="121"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 122" id="122"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 123" id="123"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 124" id="124"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 125" id="125"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="111"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="112"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="113"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="114"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="115"/></th>
                 </tr>
 
                 <tr>
                     <th>12:00 - 13:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 131" id="131"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 132" id="132"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 133" id="133"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 134" id="134"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 135" id="135"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="121"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="122"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="123"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="124"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="125"/></th>
+                </tr>
+
+                <tr>
+                    <th>13:00 - 14:00</th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="131"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="132"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="133"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="134"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="135"/></th>
                 </tr>
 
                 <tr>
                     <th>14:00 - 15:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 141" id="141"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 142" id="142"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 143" id="143"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 144" id="144"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 145" id="145"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="141"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="142"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="143"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="144"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="145"/></th>
                 </tr>
 
                 <tr>
                     <th>15:00 - 16:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 151" id="151"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 152" id="152"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 153" id="153"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 154" id="154"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 155" id="155"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="151"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="152"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="153"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="154"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="155"/></th>
                 </tr>
 
                 <tr>
                     <th>16:00 - 17:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 161" id="161"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 162" id="162"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 163" id="163"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 164" id="164"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 165" id="165"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="161"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="162"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="163"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="164"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="165"/></th>
                 </tr>
 
                 <tr>
                     <th>17:00 - 18:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 171" id="171"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 172" id="172"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 173" id="173"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 174" id="174"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 175" id="175"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="171"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="172"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="173"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="174"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="175"/></th>
                 </tr>
 
                 <tr>
                     <th>18:00 - 19:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 181" id="181"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 182" id="182"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 183" id="183"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 184" id="184"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 185" id="185"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="181"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="182"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="183"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="184"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="185"/></th>
                 </tr>
 
                 <tr>
                     <th>19:00 - 20:00</th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 191" id="191"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 192" id="192"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 193" id="193"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 194" id="194"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class="" 195" id="195"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="191"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="192"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="193"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="194"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="195"/></th>
                 </tr>
             </table>
           </div>
+          * Nota: Hacer la reserva para un único día y con las horas contínuas </br></br>
           <div class="alert alert-warning oculto" id="errorHoras"></div>
     </div>
                 <div class="col-md-4">
-                    <?php
-                    $arrayCentros=Controlador::sacarCentros();
-                    ?>
-                        <br/><br/>
-
-                                <!-- Select Basic -->
-                                    <label class="col-md-4 control-label" for="centro">Centro </label>
-                                    <div class="col-md-4">
-                                        <select id="centro" name="centro" class="form-control centroAnchor">
-                                         <?php
-                                            foreach($arrayCentros as $valor)
-                                            {
-                                         ?>
-                                            <option value="<?php echo $valor->getNombre(); ?>"><?php echo $valor->getNombre(); ?></option>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </div><br/><br/><br/>
-                    <?php
-                    if(isset($_SESSION['persona'])){
+                        <?php
+                            if(isset($_SESSION['persona'])){
                         ?>
                         <h4>Bienvenido
+
                         <?php
-                        echo ucfirst ($objeto->getNombre());
-
-
+                            echo ucfirst($objeto->getNombre());
                         ?>
 
+                                <br/><br/>
+
+                                <!-- Select Basic -->
+                                <label class="col-md-4 control-label" for="centro">Centros </label>
+                                <div class="col-md-4">
+                                    <select id="centro" name="centro" class="form-control centroAnchor">
+                                        <?php
+                                        $indice=0;
+                                        foreach($centros as $indice => $centro ){
+                                            ?>
+                                            <?php
+                                            echo "<option value='".$centro->getIdCentro()."'>".$centro->getNombre()."</option>";
+
+                                        }
+                                        ?>
+                                    </select>
+                                </div><br/><br/><br/>
+                                <!-- Select Basic -->
+                                <label class="col-md-4 control-label" for="centro">Bicicleta </label>
+                                <div class="col-md-4">
+                                    <select id="bici" name="bici" class="form-control centroAnchor">
+                                            <?php
+                                            echo $indice;
+                                                foreach($centros[$indice]->getBicis as $bici){
+                                                    echo "<option value='".$bici->getIdBicicleta()."'>".$bici->getIdBicicleta()."</option>";
+                                                }
+                                            ?>
+                                    </select>
+                                </div><br/><br/><br/>
+                        <input type="button" class="btn btn-success" value="Reservar" onclick="reservar();"/>
                         <a href="../Configuracion/cerrarsesion.php" class="btn btn-primary">Cerrar Sesión</a>
 
                     <?php

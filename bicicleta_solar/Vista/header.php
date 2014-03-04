@@ -34,10 +34,13 @@ else
     <link href="dist/css/justified-nav.css" rel="stylesheet">
       <meta charset="utf-8">
 
+      <script type="text/javascript" src="ClasesJS/Reserva.js"></script>
+      <script type="text/javascript" src="ClasesJS/Centro.js"></script>
+      <script type="text/javascript" src="ClasesJS/Bicicleta.js"></script>
 
 
 
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
+      <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
