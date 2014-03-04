@@ -307,6 +307,15 @@
 
     }
 
+    function vaciarHoras(){
+
+        for(var x in reserva){
+            document.getElementById(reserva[x]).src="img/no.png";
+        }
+        reserva = new Array();
+        console.log(reserva);
+    }
+
 </script>
 </head>
 
@@ -511,6 +520,7 @@
                                     </select>
                                 </div><br/><br/><br/>
                         <input type="button" class="btn btn-success" value="Reservar" onclick="reservar();"/>
+                        <input type="button" class="btn btn-primary" value="Restablecer" onclick="vaciarHoras();"/>
                         <a href="../Configuracion/cerrarsesion.php" class="btn btn-primary">Cerrar Sesión</a>
 
                     <?php
