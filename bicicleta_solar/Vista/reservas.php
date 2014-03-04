@@ -2,8 +2,6 @@
 require_once __DIR__.'/header.php';
 require_once __DIR__.'/../Controlador/ControladorClass.php';
 require_once __DIR__.'/../Modelo/Base/CentroClass.php';
-
-
 use Bicicleta_solar\Controlador\Controlador;
 use Bicicleta_solar\Modelo\Base\Centro;
 
