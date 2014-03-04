@@ -1,5 +1,13 @@
 <?php
 require_once __DIR__.'/header.php';
+require_once __DIR__.'/../Controlador/ControladorClass.php';
+require_once __DIR__.'/../Modelo/Base/CentroClass.php';
+
+
+use Bicicleta_solar\Controlador\Controlador;
+use Bicicleta_solar\Modelo\Base\Centro;
+
+
 ?>
 <title>Reservas</title>
 <meta charset="utf-8">
@@ -379,6 +387,8 @@ require_once __DIR__.'/header.php';
                         <h4>Bienvenido
                         <?php
                             echo ucfirst ($objeto->getNombre());
+
+                            $arrayCentros=Controlador::sacarCentros();
                         ?>
                         <br/><br/>
 
@@ -386,7 +396,14 @@ require_once __DIR__.'/header.php';
                                     <label class="col-md-4 control-label" for="centro">Centro </label>
                                     <div class="col-md-4">
                                         <select id="centro" name="centro" class="form-control centroAnchor">
-                                            <option value="">Arriaga</option>
+                                         <?php
+                                            foreach($arrayCentros as $valor)
+                                            {
+                                         ?>
+                                            <option value="<?php echo $valor->getNombre(); ?>"><?php echo $valor->getNombre(); ?></option>
+                                            <?php
+                                            }
+                                            ?>
                                         </select>
                                     </div><br/><br/><br/>
 

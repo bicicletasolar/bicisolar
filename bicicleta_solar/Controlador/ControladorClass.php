@@ -2,6 +2,7 @@
 
 namespace bicicleta_solar\Controlador;
 require_once __DIR__."/../Modelo/BD/bdReserva.php";
+require_once __DIR__."/../Modelo/BD/bdCentro.php";
 require_once __DIR__."/../Modelo/BD/bdUsuario.php";
 require_once __DIR__."/../Modelo/Base/ReservaClass.php";
 require_once __DIR__."/../Modelo/Base/CentroClass.php";
@@ -60,6 +61,12 @@ class Controlador{
         }
 
 
+    }
+
+    public static function sacarCentros()
+    {
+        $centros=BD\bdCentro::dameCentros();
+        return $centros;
     }
 }
 
