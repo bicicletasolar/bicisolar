@@ -7,7 +7,15 @@
  */
 
 namespace bicicleta_solar\Modelo\BD;
-
+require_once __DIR__."/../ArbolSolarClass.php";
+require_once __DIR__."/../BateriaClass.php";
+require_once __DIR__."/../BicicletaClass.php";
+require_once __DIR__."/../CentroClass.php";
+require_once __DIR__."/../ReservaClass.php";
+require_once __DIR__."/../UsuarioClass.php";
+use Bicicleta_solar\Modelo\Base\ArbolSolar;
+use Bicicleta_solar\Modelo\Base\Bateria;
+use Bicicleta_solar\Modelo\Base\Centro;
 use Bicicleta_solar\Modelo\Base\Reserva;
 use Bicicleta_solar\Modelo\Base\Usuario;
 
@@ -46,6 +54,13 @@ class BdGenerico {
                 while($fila=mysql_fetch_assoc($rs))
                 {
                     $objetos[]=new Centro($fila['id_centro'],$fila['nombre'],$fila['direccion']);
+                }
+            case "Arbol":
+                while($fila=mysql_fetch_assoc($rs))
+                {
+                    $bateria=new Bateria($fila['corriente'],$fila['tension'],$fila['carga']);
+                    $centro=new Centro($fila['id_centro']);
+                    $objetos[]=new ArbolSolar($fila['id_Arbol_solar'],$centro,$bateria);
                 }
 
 

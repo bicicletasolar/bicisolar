@@ -21,8 +21,8 @@ class ArbolSolar {
 
     function __construct($id_ArbolSolar,$centro,Bateria $bateria)
     {
-        $this->bateria = $bateria;
-        $this->id_ArbolSolar = $id_ArbolSolar;
+        $this->setBateria($bateria);
+        $this->setCentro($centro);
         if($centro){
             $this->setCentro($centro);
         }

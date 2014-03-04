@@ -15,8 +15,8 @@ class Bicicleta {
 
     function __construct($id_bicicleta,Bateria $bateria)
     {
-        $this->bateria = $bateria;
-        $this->id_bicicleta = $id_bicicleta;
+        $this->setBateria($bateria);
+        $this->setIdBicicleta($id_bicicleta);
     }
 
     /**

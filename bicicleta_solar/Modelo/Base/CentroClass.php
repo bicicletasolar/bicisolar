@@ -8,6 +8,8 @@
 
 namespace Bicicleta_solar\Modelo\Base;
 
+use bicicleta_solar\Modelo\BD\bdCentro;
+
 class Centro {
 
     private $id_centro;
@@ -32,6 +34,9 @@ class Centro {
         {
             case 0:
                 $this->__construct1();
+                break;
+            case 1:
+                $this->__construct1($args[0]);
                 break;
             case 3:
                 $this->__construct1($args[0],$args[1],$args[2]);
@@ -76,6 +81,10 @@ class Centro {
     {
         return $this->nombre;
     }
+    public function setArboles($arboles)
+    {
+        $this->arboles=$arboles;
+    }
 
     public function addArbol(ArbolSolar $arbol)
     {
@@ -88,7 +97,9 @@ class Centro {
      */
     public function getArboles()
     {
-        return $this->arboles;
+        if(!$this->arboles){
+            $this->setArboles(bdCentro::getArboles($this));
+        }
     }
 
 
