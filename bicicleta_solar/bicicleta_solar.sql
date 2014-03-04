@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-03-2014 a las 08:59:16
--- Versión del servidor: 5.5.24-log
--- Versión de PHP: 5.4.3
+-- Tiempo de generación: 04-03-2014 a las 09:12:49
+-- Versión del servidor: 5.5.8
+-- Versión de PHP: 5.3.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -36,6 +35,11 @@ CREATE TABLE IF NOT EXISTS `arbolsolar` (
   KEY `id_centro` (`id_centro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcar la base de datos para la tabla `arbolsolar`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -50,6 +54,11 @@ CREATE TABLE IF NOT EXISTS `bicicleta` (
   PRIMARY KEY (`id_bicicleta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcar la base de datos para la tabla `bicicleta`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -61,7 +70,18 @@ CREATE TABLE IF NOT EXISTS `centro` (
   `nombre` varchar(20) NOT NULL,
   `direccion` varchar(20) NOT NULL,
   PRIMARY KEY (`id_centro`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Volcar la base de datos para la tabla `centro`
+--
+
+INSERT INTO `centro` (`id_centro`, `nombre`, `direccion`) VALUES
+(1, 'Jesus Obrero', '---'),
+(2, 'Molinuevo', '---'),
+(3, 'Arriaga', '---'),
+(4, 'Nieves Cano', '---'),
+(5, 'Mendizorroza', '---');
 
 -- --------------------------------------------------------
 
@@ -85,6 +105,11 @@ CREATE TABLE IF NOT EXISTS `reserva` (
   KEY `id_bicicleta` (`id_bicicleta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Volcar la base de datos para la tabla `reserva`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -100,14 +125,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Volcado de datos para la tabla `usuario`
+-- Volcar la base de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `password`, `dni`) VALUES
 (3, 'Gonzalo', '12345abcde', '72731967x');
 
 --
--- Restricciones para tablas volcadas
+-- Filtros para las tablas descargadas (dump)
 --
 
 --
@@ -123,7 +148,3 @@ ALTER TABLE `reserva`
   ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`id_bicicleta`) REFERENCES `bicicleta` (`id_bicicleta`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reserva_ibfk_2` FOREIGN KEY (`id_Usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reserva_ibfk_3` FOREIGN KEY (`id_Centro`) REFERENCES `arbolsolar` (`id_centro`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
