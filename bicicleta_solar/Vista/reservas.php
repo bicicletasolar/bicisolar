@@ -381,15 +381,9 @@ use Bicicleta_solar\Modelo\Base\Centro;
           <div class="alert alert-warning oculto" id="errorHoras"></div>
     </div>
                 <div class="col-md-4">
-                        <?php
-                            if(isset($_SESSION['persona'])){
-                        ?>
-                        <h4>Bienvenido
-                        <?php
-                            echo ucfirst ($objeto->getNombre());
-
-                            $arrayCentros=Controlador::sacarCentros();
-                        ?>
+                    <?php
+                    $arrayCentros=Controlador::sacarCentros();
+                    ?>
                         <br/><br/>
 
                                 <!-- Select Basic -->
@@ -406,6 +400,15 @@ use Bicicleta_solar\Modelo\Base\Centro;
                                             ?>
                                         </select>
                                     </div><br/><br/><br/>
+                    <?php
+                    if(isset($_SESSION['persona'])){
+                        ?>
+                        <h4>Bienvenido
+                        <?php
+                        echo ucfirst ($objeto->getNombre());
+
+
+                        ?>
 
                         <a href="../Configuracion/cerrarsesion.php" class="btn btn-primary">Cerrar Sesión</a>
 
