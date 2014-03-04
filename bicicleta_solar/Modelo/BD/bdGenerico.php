@@ -7,12 +7,12 @@
  */
 
 namespace bicicleta_solar\Modelo\BD;
-require_once __DIR__."/../ArbolSolarClass.php";
-require_once __DIR__."/../BateriaClass.php";
-require_once __DIR__."/../BicicletaClass.php";
-require_once __DIR__."/../CentroClass.php";
-require_once __DIR__."/../ReservaClass.php";
-require_once __DIR__."/../UsuarioClass.php";
+require_once __DIR__."/../Base/ArbolSolarClass.php";
+require_once __DIR__."/../Base/BateriaClass.php";
+require_once __DIR__."/../Base/BicicletaClass.php";
+require_once __DIR__."/../Base/CentroClass.php";
+require_once __DIR__."/../Base/ReservaClass.php";
+require_once __DIR__."/../Base/UsuarioClass.php";
 use Bicicleta_solar\Modelo\Base\ArbolSolar;
 use Bicicleta_solar\Modelo\Base\Bateria;
 use Bicicleta_solar\Modelo\Base\Centro;

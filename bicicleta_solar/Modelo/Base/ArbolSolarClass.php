@@ -8,8 +8,8 @@
 
 namespace Bicicleta_solar\Modelo\Base;
 
-require_once "/BateriaClass.php";
-require_once "/CentroClass.php";
+require_once __DIR__."/BateriaClass.php";
+require_once __DIR__."/CentroClass.php";
 
 use Bicicleta_solar\Modelo\Base\Centro;
 
