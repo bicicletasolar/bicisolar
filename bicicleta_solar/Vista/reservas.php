@@ -248,9 +248,12 @@
         reservaValido = false;
         diasValido = false;
         horasValido = false;
-
+        diaValido = false;
         valido = false;
         reserva = reserva.sort();
+
+
+
 
         //Validar que reservas no está vacío
         if(reserva.length==0)
@@ -279,9 +282,17 @@
                 if(i == horasReserva.length){
                     horasValido = true;
                     document.getElementById("errorHoras").style.visibility="hidden";
+
+                    if(document.getElementById("dia"+diasReserva[0]).textContent==""){
+                        document.getElementById("errorHoras").style.visibility="visible";
+                        document.getElementById("errorHoras").innerHTML="Este día no es posible reservar";
+                        diaValido = true;
+                    }else{
+                        document.getElementById("errorHoras").style.visibility="hidden";
+                    }
                 }else{
                     document.getElementById("errorHoras").style.visibility="visible";
-                    document.getElementById("errorHoras").innerHTML="Todas las horas deben ser contínuas";
+                    document.getElementById("errorHoras").innerHTML="Todas las horas deben ser continuas";
                 }
             }else{
                 document.getElementById("errorHoras").style.visibility="visible";
