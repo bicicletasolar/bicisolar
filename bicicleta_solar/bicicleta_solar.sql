@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-03-2014 a las 09:12:49
--- Versión del servidor: 5.5.8
--- Versión de PHP: 5.3.5
+-- Tiempo de generación: 04-03-2014 a las 12:55:28
+-- Versión del servidor: 5.5.24-log
+-- Versión de PHP: 5.4.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -35,11 +36,6 @@ CREATE TABLE IF NOT EXISTS `arbolsolar` (
   KEY `id_centro` (`id_centro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcar la base de datos para la tabla `arbolsolar`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -47,17 +43,30 @@ CREATE TABLE IF NOT EXISTS `arbolsolar` (
 --
 
 CREATE TABLE IF NOT EXISTS `bicicleta` (
-  `id_bicicleta` int(20) NOT NULL,
+  `id_bicicleta` int(20) NOT NULL AUTO_INCREMENT,
   `corriente` int(11) NOT NULL,
   `tension` int(11) NOT NULL,
   `carga` int(11) NOT NULL,
-  PRIMARY KEY (`id_bicicleta`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id_centro` int(11) NOT NULL,
+  PRIMARY KEY (`id_bicicleta`),
+  KEY `id_Centro` (`id_centro`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
--- Volcar la base de datos para la tabla `bicicleta`
+-- Volcado de datos para la tabla `bicicleta`
 --
 
+INSERT INTO `bicicleta` (`id_bicicleta`, `corriente`, `tension`, `carga`, `id_centro`) VALUES
+(1, 0, 0, 0, 1),
+(2, 0, 0, 0, 1),
+(3, 0, 0, 0, 2),
+(4, 0, 0, 0, 2),
+(5, 0, 0, 0, 3),
+(6, 0, 0, 0, 3),
+(7, 0, 0, 0, 4),
+(8, 0, 0, 0, 4),
+(9, 0, 0, 0, 5),
+(10, 0, 0, 0, 5);
 
 -- --------------------------------------------------------
 
@@ -66,14 +75,14 @@ CREATE TABLE IF NOT EXISTS `bicicleta` (
 --
 
 CREATE TABLE IF NOT EXISTS `centro` (
-  `id_centro` int(20) NOT NULL AUTO_INCREMENT,
+  `id_centro` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(20) NOT NULL,
   `direccion` varchar(20) NOT NULL,
   PRIMARY KEY (`id_centro`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Volcar la base de datos para la tabla `centro`
+-- Volcado de datos para la tabla `centro`
 --
 
 INSERT INTO `centro` (`id_centro`, `nombre`, `direccion`) VALUES
@@ -91,8 +100,7 @@ INSERT INTO `centro` (`id_centro`, `nombre`, `direccion`) VALUES
 
 CREATE TABLE IF NOT EXISTS `reserva` (
   `id_reserva` int(20) NOT NULL AUTO_INCREMENT,
-  `fechaInicio` date NOT NULL,
-  `fechaFin` date NOT NULL,
+  `fecha` date NOT NULL,
   `horaInicio` date NOT NULL,
   `horaFin` date NOT NULL,
   `estado` varchar(20) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
@@ -104,11 +112,6 @@ CREATE TABLE IF NOT EXISTS `reserva` (
   KEY `id_Centro` (`id_Centro`),
   KEY `id_bicicleta` (`id_bicicleta`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Volcar la base de datos para la tabla `reserva`
---
-
 
 -- --------------------------------------------------------
 
@@ -125,14 +128,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Volcar la base de datos para la tabla `usuario`
+-- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `password`, `dni`) VALUES
 (3, 'Gonzalo', '12345abcde', '72731967x');
 
 --
--- Filtros para las tablas descargadas (dump)
+-- Restricciones para tablas volcadas
 --
 
 --
@@ -142,9 +145,19 @@ ALTER TABLE `arbolsolar`
   ADD CONSTRAINT `arbolsolar_ibfk_1` FOREIGN KEY (`id_centro`) REFERENCES `centro` (`id_centro`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `bicicleta`
+--
+ALTER TABLE `bicicleta`
+  ADD CONSTRAINT `bicicleta_ibfk_1` FOREIGN KEY (`id_Centro`) REFERENCES `centro` (`id_centro`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `reserva`
 --
 ALTER TABLE `reserva`
   ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`id_bicicleta`) REFERENCES `bicicleta` (`id_bicicleta`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reserva_ibfk_2` FOREIGN KEY (`id_Usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reserva_ibfk_3` FOREIGN KEY (`id_Centro`) REFERENCES `arbolsolar` (`id_centro`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
