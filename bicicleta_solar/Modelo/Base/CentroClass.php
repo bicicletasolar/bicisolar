@@ -7,7 +7,8 @@
  */
 
 namespace Bicicleta_solar\Modelo\Base;
-
+require_once __DIR__."/../BD/bdCentro.php";
+require_once __DIR__."/BicicletaClass.php";
 use bicicleta_solar\Modelo\BD\bdCentro;
 
 class Centro {
@@ -16,12 +17,14 @@ class Centro {
     private $nombre;
     private $direccion;
     private $arboles; // Relacion
+    private $bicis;
 
-    private function __construct1($id_centro=null,$nombre=null,$direccion=null)
+    private function __construct1($id_centro=null,$nombre=null,$direccion=null,$bicis=null)
     {
         $this->setIdCentro($id_centro);
         $this->setNombre($nombre);
         $this->setDireccion($direccion);
+        $this->setBicis($bicis);
 
     }
 
@@ -40,6 +43,9 @@ class Centro {
                 break;
             case 3:
                 $this->__construct1($args[0],$args[1],$args[2]);
+                break;
+            case 4:
+                $this->__construct1($args[0],$args[1],$args[2],$args[3]);
                 break;
 
         }
@@ -101,6 +107,33 @@ class Centro {
             $this->setArboles(bdCentro::getArboles($this));
         }
     }
+
+    /**
+     * @param mixed $bicis
+     */
+    public function setBicis($bicis)
+    {
+        if($bicis){
+        $this->bicis = $bicis;
+        foreach($bicis as $bici){
+            $bici->setCentro($this);
+        }
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBicis()
+    {
+        if(!$this->bicis){
+        $this->setBicis(bdCentro::getBicis($this));
+        }
+    }
+
+
+
+
 
 
 

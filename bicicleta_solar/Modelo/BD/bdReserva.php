@@ -10,11 +10,11 @@ use Bicicleta_solar\Modelo\Base\Reserva;
 
 class bdReserva extends bdGenerico{
 
-    public static function getReservas() // Metodo para recoger todas las reservas realizadas
+    public static function getReservas($bici) // Metodo para recoger todas las reservas realizadas
     {
         $conexion=parent::abrirConexion();
 
-        $query="Select * from reserva";
+        $query="Select * from reserva where id_bicicleta'".$bici->getIdBicicleta();"' ";
 
         $rs = mysql_query($query,$conexion) or die(mysql_error());
 
@@ -114,6 +114,12 @@ class bdReserva extends bdGenerico{
         parent:: cerrarConexion($conexion);
 
         return $bicicleta;
+    }
+
+
+    public static function mirarDisponibilidad($bici){
+        $conexion=parent::abrirConexion();
+        $query="select * from reserva where id_Centro='".$bici->getCentro()->getIdCentro()."'";
     }
 }
 ?>

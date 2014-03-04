@@ -9,6 +9,7 @@
 namespace bicicleta_solar\Modelo\BD;
 
 require_once __DIR__."/../Base/CentroClass.php";
+require_once __DIR__."/../Base/CentroClass.php";
 use Bicicleta_solar\Modelo\Base;
 
 class bdCentro extends bdGenerico{
@@ -27,6 +28,15 @@ class bdCentro extends bdGenerico{
         parent:: cerrarConexion($conexion);
 
         return $centros;
+    }
+
+    public static function getBicis($centro){
+        $conexion=parent::abrirConexion();
+        $query="select * from bicicleta where id_centro='".$centro->getIdCentro()."'";
+        $rs=mysql_query($query,$conexion) or die(mysql_error());
+        $bicis=parent::convertirArrays($rs,"Bici");
+        parent::cerrarConexion($conexion);
+        return $bicis;
     }
 
 } 

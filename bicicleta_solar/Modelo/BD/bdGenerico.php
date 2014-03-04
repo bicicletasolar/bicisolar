@@ -15,6 +15,7 @@ require_once __DIR__."/../Base/ReservaClass.php";
 require_once __DIR__."/../Base/UsuarioClass.php";
 use Bicicleta_solar\Modelo\Base\ArbolSolar;
 use Bicicleta_solar\Modelo\Base\Bateria;
+use Bicicleta_solar\Modelo\Base\Bicicleta;
 use Bicicleta_solar\Modelo\Base\Centro;
 use Bicicleta_solar\Modelo\Base\Reserva;
 use Bicicleta_solar\Modelo\Base\Usuario;
@@ -61,6 +62,11 @@ class BdGenerico {
                     $bateria=new Bateria($fila['corriente'],$fila['tension'],$fila['carga']);
                     $centro=new Centro($fila['id_centro']);
                     $objetos[]=new ArbolSolar($fila['id_Arbol_solar'],$centro,$bateria);
+                }
+            case "Bici":
+                while($fila=mysql_fetch_assoc($rs)){
+                    $bateria=new Bateria($fila['corriente'],$fila['tension'],$fila['carga']);
+                    $objetos[]=new Bicicleta($fila['id_bicicleta'],$bateria);
                 }
 
 

@@ -8,7 +8,6 @@
 
 namespace Bicicleta_solar\Modelo\Base;
 use bicicleta_solar\Modelo\BD\bdReserva;
-
 require_once __DIR__."/UsuarioClass.php";
 
 class Reserva {
