@@ -69,8 +69,8 @@ class bdReserva extends bdGenerico{
         $conexion=parent::abrirConexion();
         mysql_query("START TRANSACTION");
 
-        $query = "insert into reserva values(0,'".$reserva->getFechaInicio()."','".$reserva->getFechaFin()."','".$reserva->getHoraInicio()."','".$reserva->getHoraFin()."','".$reserva->getEstado()."','".$reserva->getUsuario()->getIdUsuario()."','".$reserva->getCentro()->getIdCentro()."')";
-
+      //  $query = "insert into reserva values(0,'".$reserva->getFechaInicio()."','".$reserva->getFechaFin()."','".$reserva->getHoraInicio()."','".$reserva->getHoraFin()."','".$reserva->getEstado()."','".$reserva->getUsuario()->getIdUsuario()."','".$reserva->getCentro()->getIdCentro()."')";
+        $query = "Insert into reserva values(0,'".$reserva->fecha."','".$reserva->horaInicio."','".$reserva->horaFin."','".$reserva->usuario->nombre."','".$reserva->centro->Id_centro."','".$reserva->bicicleta->Id_bicicleta."',)";
         try
         {
             $res = mysql_query($query, $conexion);
