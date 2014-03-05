@@ -307,12 +307,18 @@ use bicicleta_solar\Controlador\Controlador;
                 if(i == horasReserva.length){
                     horasValido = true;
                     document.getElementById("errorHoras").style.visibility="hidden";
-
-                    if(!centroSel){
+                    if(document.getElementById("dia"+diasReserva[0]).textContent==""){
                         document.getElementById("errorHoras").style.visibility="visible";
-                        document.getElementById("errorHoras").innerHTML="Selecciona un Centro";
+                        document.getElementById("errorHoras").innerHTML="Este día no es posible reservar";
                     }else{
-                        document.getElementById("errorHoras").style.visibility="hidden";
+                        if(!centroSel){
+                            document.getElementById("errorHoras").style.visibility="visible";
+                            document.getElementById("errorHoras").innerHTML="Selecciona un Centro";
+
+                        }else{
+                            document.getElementById("errorHoras").style.visibility="hidden";
+                        }
+                        diaValido = true;
                     }
                 }else{
                     document.getElementById("errorHoras").style.visibility="visible";
