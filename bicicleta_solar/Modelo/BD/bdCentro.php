@@ -43,8 +43,7 @@ class bdCentro extends bdGenerico{
         $rs=mysql_query($query,$conexion) or die(mysql_error());
 
         $bicis=parent::convertirArrays($rs,"Bici");
-        var_dump($bicis);
-        die();
+
         parent::cerrarConexion($conexion);
         return $bicis;
     }

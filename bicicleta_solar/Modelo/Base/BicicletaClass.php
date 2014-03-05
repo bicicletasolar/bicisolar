@@ -13,7 +13,7 @@ require_once __DIR__."/BateriaClass.php";
 require_once __DIR__."/../BD/bdReserva.php";
 
 class Bicicleta {
-    private $id_bicicleta;
+    public $id_bicicleta;
     private $bateria;
     private $centro;
     private $reserva;
@@ -42,13 +42,13 @@ class Bicicleta {
                 $this->__construct1();
                 break;
             case 1:
-                $this->__construct1($args[1]);
+                $this->__construct1($args[0]);
                 break;
             case 2:
-                $this->__construct2($args[1],$args[2]);
+                $this->__construct2($args[0],$args[1]);
                 break;
             case 3:
-                $this->__construct1($args[1],$args[2],$args[1]);
+                $this->__construct1($args[0],$args[1],$args[2]);
                 break;
         }
     }
@@ -74,7 +74,7 @@ class Bicicleta {
     /**
      * @param \Bicicleta_solar\Modelo\Base\Bateria $bateria
      */
-    public function setBateria($bateria)
+    public function setBateria(Bateria $bateria)
     {
         $this->bateria = $bateria;
     }

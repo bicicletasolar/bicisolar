@@ -47,16 +47,19 @@ class BdGenerico {
                 {
                     $objetos[]=new Usuario($fila['nombre']);
                 }
+                break;
             case "Reserva":
                 while($fila=mysql_fetch_assoc($rs))
                 {
                     $objetos[]=new Reserva($fila['centro'],$fila['estado'],$fila['fechaFin'],$fila['fechaInicio'],$fila['horaFin'],$fila['horaInicio']);
                 }
+                break;
             case "Centro":
                 while($fila=mysql_fetch_assoc($rs))
                 {
                     $objetos[]=new Centro($fila['id_centro'],$fila['nombre'],$fila['direccion']);
                 }
+                break;
             case "Arbol":
                 while($fila=mysql_fetch_assoc($rs))
                 {
@@ -64,12 +67,14 @@ class BdGenerico {
                     $centro=new Centro($fila['id_centro']);
                     $objetos[]=new ArbolSolar($fila['id_Arbol_solar'],$centro,$bateria);
                 }
+                break;
             case "Bici":
-            while($fila=mysql_fetch_assoc($rs)){
-                $bateria=new Bateria($fila['corriente'],$fila['tension'],$fila['carga']);
-                $objetos[]=new Bicicleta($fila['id_bicicleta'],$bateria);
-            }
 
+                while($fila=mysql_fetch_assoc($rs)){
+                    $bateria=new Bateria($fila['corriente'],$fila['tension'],$fila['carga']);
+                    $objetos[]=new Bicicleta($fila['id_bicicleta'],$bateria);
+                }
+                break;
 
         }
         return $objetos;
