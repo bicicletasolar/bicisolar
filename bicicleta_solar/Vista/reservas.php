@@ -336,7 +336,7 @@
 
         indice = document.getElementById("centro").selectedIndex;
         centro = document.getElementById("centro")[indice].value;
-
+        alert(centro);
         crearObjeto();
 
         xmlhttp.onreadystatechange = function(){
@@ -361,6 +361,7 @@
 </head>
 
 <body onload="meses()">
+
 <?php
     $centros = Controlador::sacarCentros();
 
@@ -538,8 +539,8 @@
                                 <div class="col-md-4">
                                     <select id="centro" name="centro" class="form-control centroAnchor" onchange="cogerBicicleta();">
                                         <?php
-                                        $indice=0;
-                                        foreach($centros as $indice => $centro ){
+
+                                        foreach($centros as $centro ){
                                             ?>
                                             <?php
                                             echo "<option value='".$centro->getIdCentro()."'>".$centro->getNombre()."</option>";
@@ -553,8 +554,7 @@
                                 <div class="col-md-4">
                                     <select id="bici" name="bici" class="form-control centroAnchor">
                                             <?php
-                                            echo $indice;
-                                                foreach($centros[$indice]->getBicis as $bici){
+                                                foreach($centros[0]->getBicis as $bici){
                                                     echo "<option value='".$bici->getIdBicicleta()."'>".$bici->getIdBicicleta()."</option>";
                                                 }
                                             ?>
@@ -590,6 +590,7 @@
 
                 </div>
     </div>
+
     <!-- Fin de tabla reservas-->
 
 <?php
