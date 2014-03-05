@@ -1,10 +1,10 @@
 <?php
-require_once __DIR__.'/../ControladorClass.php';
-use bicicleta_solar\Controlador\Controlador;
+require_once __DIR__.'/../../Modelo/BD/bdCentro.php';
+use bicicleta_solar\Modelo\BD\bdCentro;
 
 $centro = $_POST['centro'];
 
-$bici = Controlador::cogerBicicleta($centro);
+$bici = bdCentro::getBicis($centro);
 
 $bici = json_encode($bici);
 

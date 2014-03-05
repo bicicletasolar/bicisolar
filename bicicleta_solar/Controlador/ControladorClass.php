@@ -36,8 +36,6 @@ class Controlador{
 
     public static function logear($post)
     {
-
-
         $usu=new Base\Usuario();
         $usu->setDni($post['dni']);
         $usu->setPassword($post['contrasena']);
