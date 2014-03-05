@@ -8,5 +8,4 @@ $centro = $_POST['centro'];
 $bici = bdCentro::getBicis($centro);
 
 $bici = json_encode($bici);
-
 echo $bici;
