@@ -253,8 +253,6 @@
         reserva = reserva.sort();
 
 
-
-
         //Validar que reservas no está vacío
         if(reserva.length==0)
         {
@@ -306,7 +304,6 @@
             valido = true;
 
     }
-
     function vaciarHoras(){
 
         for(var x in reserva){
@@ -314,6 +311,50 @@
         }
         reserva = new Array();
         console.log(reserva);
+    }
+    //AJAX
+    function crearObjeto(){
+
+        try
+        {
+            xmlhttp = new XMLHttpRequest();
+
+        }
+        catch (a)
+        {
+            try {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                alert("objeto creado en internet explorer antiguo");
+            }
+            catch (b) {
+                xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+            }
+        }
+
+    }
+    function cogerBicicleta(){
+
+        indice = document.getElementById("centro").selectedIndex;
+        centro = document.getElementById("centro")[indice].value;
+
+        crearObjeto();
+
+        xmlhttp.onreadystatechange = function(){
+
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+            {
+                procesarCentro(xmlhttp.responseText);
+            }
+        }
+
+        xmlhttp.open("POST", "http://localhost/bicisolar/trunk/bicicleta_solar/Controlador/AJAX/cogerBici.php", true);
+        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8');
+        xmlhttp.send("centro="+centro);
+    }
+    function procesarCentro(bici){
+        b = JSON.parse(bici);
+
+        alert(b);
     }
 
 </script>
@@ -477,7 +518,7 @@
                 </tr>
             </table>
           </div>
-          * Nota: Hacer la reserva para un único día y con las horas contínuas </br></br>
+          * Nota: Hacer la reserva para un único día y con las horas continuas </br></br>
           <div class="alert alert-warning oculto" id="errorHoras"></div>
     </div>
                 <div class="col-md-4">
@@ -495,7 +536,7 @@
                                 <!-- Select Basic -->
                                 <label class="col-md-4 control-label" for="centro">Centros </label>
                                 <div class="col-md-4">
-                                    <select id="centro" name="centro" class="form-control centroAnchor">
+                                    <select id="centro" name="centro" class="form-control centroAnchor" onchange="cogerBicicleta();">
                                         <?php
                                         $indice=0;
                                         foreach($centros as $indice => $centro ){
