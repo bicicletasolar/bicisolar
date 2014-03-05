@@ -92,6 +92,7 @@ require_once __DIR__.'/header.php';
                         <label class="col-md-4 control-label" for="dia">Día (opcional)</label>
                         <div class="col-md-4">
                             <select id="dia" name="dia" class="form-control anchoSelect2">
+
                             </select>
                         </div>
                     </div>

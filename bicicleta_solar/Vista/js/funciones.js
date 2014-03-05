@@ -214,6 +214,7 @@ function activarHora(hora){
 }
 function reservar(){
     validar();
+
     if(valido){
         diaReserva = parseInt(document.getElementById("dia"+diasReserva[0]).textContent)+1;
         mesReserva = mes+1;
@@ -231,10 +232,12 @@ function reservar(){
         r.addBici(biciReserva);
 
         console.log(r);
+
         enviarReserva();
 
     }
 }
+
 function enviarReserva(){
     crearObjeto();
     r = JSON.stringify(r);
@@ -366,13 +369,28 @@ function cogerBicicleta(){
     xmlhttp.send("centro="+centro);
 }
 function procesarCentro(bici){
+
+    //PENDIENTE
+        while(document.getElementById("bici").options.length > 0){
+            document.getElementById("bici").remove(0);
+        }
+
     b = JSON.parse(bici);
     document.getElementById("bici").style.visibility="visible";
     document.getElementById("titulobici").style.visibility="visible";
     centroSel = true;
     capa = document.getElementById("bici");
+
+
     for(var i in b){
-        capa.options[i]=new Option(b[i].id_bicicleta,b[i].id_bicicleta);
+        var option = document.createElement("option");
+        option.text = b[i].id_bicicleta;
+        capa.add(option);
     }
+
+
+
+
+
 }
 

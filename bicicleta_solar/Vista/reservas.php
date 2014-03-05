@@ -18,11 +18,34 @@
 </head>
 
 <body onload="meses()">
+<!-- MODAL
+    <div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <a class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h4 class="modal-title" id="myModalLabel">Modal Heading</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Text in a modal</h4>
+                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group">
+                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <input type="hidden"  data-toggle="modal" href="#myModal" id="confirmar"/>
+-->
 
 <?php
     $centros = Controlador::sacarCentros();
-
-
 ?>
 <div class="container">
     <img src="img/logo.jpg" class="" egibide"/>
@@ -192,7 +215,7 @@
                                 <br/><br/>
 
                                 <!-- Select Basic -->
-                                <label class="col-md-4 control-label" for="centro">Centros </label>
+                                <label class="col-md-4 control-label formatoLetra" for="centro">Centros </label>
                                 <div class="col-md-4">
                                     <select id="centro" name="centro" class="form-control centroAnchor" onchange="cogerBicicleta();">
                                         <option value="">Selecciona</option>
@@ -206,15 +229,17 @@
                                     </select>
                                 </div><br/><br/><br/>
                                 <!-- Select Basic -->
-                                <label class="col-md-4 control-label oculto" for="bici" id="titulobici">Bicicleta </label>
+                                <label class="col-md-4 control-label oculto formatoLetra" for="bici" id="titulobici">Bicicleta </label>
                                 <div class="col-md-4">
                                     <select id="bici" name="bici" class="form-control centroAnchor oculto">
-
+                                        <option value="">Selecciona</option>
                                     </select>
                                 </div><br/><br/><br/>
                         <input type="button" class="btn btn-success" value="Reservar" onclick="reservar();"/>
                         <input type="button" class="btn btn-primary" value="Restablecer" onclick="vaciarHoras();"/>
-                        <a href="../Configuracion/cerrarsesion.php" class="btn btn-primary">Cerrar Sesión</a>
+
+
+                                <a href="../Configuracion/cerrarsesion.php" class="btn btn-primary">Cerrar Sesión</a>
 
                     <?php
                     }else{
