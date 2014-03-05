@@ -58,7 +58,9 @@
         console.log(diames);
     }
     function mesAnt(){
+
         if(mes!=0){
+            vaciarHoras()
             diames=1;
             mes--;
             var mesActual = new Date(mesesIn[mes]+" "+diames +", "+anio);
@@ -79,6 +81,7 @@
     }
     function mesPos(){
         if(mes!=11){
+            vaciarHoras()
             mes++;
             diames=1;
             var mesActual = new Date(mesesIn[mes]+" "+diames +", "+anio);
@@ -121,7 +124,7 @@
         }
     }
     function semanaAnt(){
-
+        vaciarHoras()
        if(document.getElementById("diaSiguiente").style.visibility="hidden"){
            document.getElementById("diaSiguiente").style.visibility="visible";
        }
@@ -140,7 +143,7 @@
         validarPrincipioSemana();
     }
     function semanaPos(){
-
+        vaciarHoras()
         if(document.getElementById("diaAnterior").style.visibility="hidden"){
             document.getElementById("diaAnterior").style.visibility="visible";
         }
@@ -336,7 +339,7 @@
 
         indice = document.getElementById("centro").selectedIndex;
         centro = document.getElementById("centro")[indice].value;
-        alert(centro);
+
         crearObjeto();
 
         xmlhttp.onreadystatechange = function(){
@@ -352,10 +355,10 @@
         xmlhttp.send("centro="+centro);
     }
     function procesarCentro(bici){
+        alert(bici);
         b = JSON.parse(bici);
-
-        alert(b);
     }
+
 
 </script>
 </head>

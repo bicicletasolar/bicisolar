@@ -26,6 +26,10 @@ class Bicicleta {
         $this->setCentro($centro);
         $this->setReserva($reserva);
     }
+    private function __construct2($id_bicicleta=null,Bateria $bateria){
+        $this->setBateria($bateria);
+        $this->setIdBicicleta($id_bicicleta);
+    }
 
 
     public function __construct()
@@ -41,7 +45,7 @@ class Bicicleta {
                 $this->__construct1($args[1]);
                 break;
             case 2:
-                $this->__construct1($args[1],$args[2]);
+                $this->__construct2($args[1],$args[2]);
                 break;
             case 3:
                 $this->__construct1($args[1],$args[2],$args[1]);

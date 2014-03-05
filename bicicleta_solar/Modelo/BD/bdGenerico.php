@@ -13,6 +13,7 @@ require_once __DIR__."/../Base/BicicletaClass.php";
 require_once __DIR__."/../Base/CentroClass.php";
 require_once __DIR__."/../Base/ReservaClass.php";
 require_once __DIR__."/../Base/UsuarioClass.php";
+
 use Bicicleta_solar\Modelo\Base\ArbolSolar;
 use Bicicleta_solar\Modelo\Base\Bateria;
 use Bicicleta_solar\Modelo\Base\Bicicleta;
@@ -64,10 +65,10 @@ class BdGenerico {
                     $objetos[]=new ArbolSolar($fila['id_Arbol_solar'],$centro,$bateria);
                 }
             case "Bici":
-                while($fila=mysql_fetch_assoc($rs)){
-                    $bateria=new Bateria($fila['corriente'],$fila['tension'],$fila['carga']);
-                    $objetos[]=new Bicicleta($fila['id_bicicleta'],$bateria);
-                }
+            while($fila=mysql_fetch_assoc($rs)){
+                $bateria=new Bateria($fila['corriente'],$fila['tension'],$fila['carga']);
+                $objetos[]=new Bicicleta($fila['id_bicicleta'],$bateria);
+            }
 
 
         }

@@ -8,7 +8,6 @@
 
 namespace Bicicleta_solar\Modelo\Base;
 
-
 class Bateria {
 
     private $corriente;
