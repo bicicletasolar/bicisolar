@@ -22,14 +22,6 @@
 
             document.getElementById("act").css.backgroundColor="red";
         }
-       /* $("#menu li a").click(function()
-        {
-
-            $(this).parent().addClass('active'). // <li>
-                siblings().removeClass('active');
-        });
-
-        */
 
 
 
