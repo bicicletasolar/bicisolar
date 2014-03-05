@@ -3,10 +3,13 @@
 namespace bicicleta_solar\Modelo\BD;
 require_once __DIR__."/../Base/ReservaClass.php";
 require_once __DIR__."/bdGenerico.php";
+require_once __DIR__."/../Base/UsuarioClass.php";
+require_once __DIR__."/../Base/BicicletaClass.php";
 use bicicleta_solar\Modelo\Base;
 use Bicicleta_solar\Modelo\Base\Bateria;
 use Bicicleta_solar\Modelo\Base\Bicicleta;
 use Bicicleta_solar\Modelo\Base\Reserva;
+use Bicicleta_solar\Modelo\Base\Usuario;
 
 class bdReserva extends bdGenerico{
 
@@ -64,13 +67,11 @@ class bdReserva extends bdGenerico{
         return $centro;
     }
 
-    public static function introducirReserva($reserva)
+    public static function introducirReserva($reserva,Usuario $usuario)
     {
         $conexion=parent::abrirConexion();
         mysql_query("START TRANSACTION");
-
-      //  $query = "insert into reserva values(0,'".$reserva->getFechaInicio()."','".$reserva->getFechaFin()."','".$reserva->getHoraInicio()."','".$reserva->getHoraFin()."','".$reserva->getEstado()."','".$reserva->getUsuario()->getIdUsuario()."','".$reserva->getCentro()->getIdCentro()."')";
-        $query = "Insert into reserva values(0,'".$reserva->fecha."','".$reserva->horaInicio."','".$reserva->horaFin."','".$reserva->usuario->nombre."','".$reserva->centro->Id_centro."','".$reserva->bicicleta->Id_bicicleta."',)";
+       $query = "Insert into reserva values(0,'2014-02-01',".$reserva->horaInicio.",".$reserva->horaFinal.",".$usuario->getIdUsuario().",".$reserva->centro.",".$reserva->bici.")";
         try
         {
             $res = mysql_query($query, $conexion);

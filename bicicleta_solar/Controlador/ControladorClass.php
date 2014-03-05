@@ -13,25 +13,8 @@ use bicicleta_solar\Modelo\BD;
 
 class Controlador{
 
-
-    public static function introducirReserva($datos){
-   /*     $reserva=new Base\Reserva();
-        $reserva->setFechaInicio($datos['fechaInicio']);
-        $reserva->setFechaFin($datos['fechaFin']);
-        $reserva->setHoraInicio($datos['horaInicio']);
-        $reserva->setHoraFin($datos['horaFin']);
-
-        $centro=new Base\Centro();
-        $centro->setNombre($datos['centro']);
-        $reserva->setCentro($centro);
-        $usuario=unserialize($_SESSION['persona']);
-        $reserva->setUsuario($usuario);*/
-
-        $reserva = json_decode($datos['obj']);
-
-        BD\bdReserva::introducirReserva($reserva);
-
-
+    public static function getTodasReservas(){
+        //BD\bdReserva::
     }
 
     public static function logear($post)
