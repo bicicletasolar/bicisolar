@@ -159,3 +159,20 @@ th img{
 .btn{
     margin-bottom: 5px;
 }
+
+.centered{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.formatoLetra{
+    font-size: 13pt;
+    padding-top:6px;
+}
+
+.anchoSelect{
+    width:150px;
+}
+.anchoSelect2{
+    width:60px;
+}
