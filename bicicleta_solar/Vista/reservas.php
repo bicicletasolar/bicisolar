@@ -4,8 +4,10 @@
     require_once __DIR__.'/../Controlador/ControladorClass.php';
     require_once __DIR__.'/../Modelo/Base/CentroClass.php';
 
-    use bicicleta_solar\Controlador\Controlador;
 
+
+
+use bicicleta_solar\Controlador\Controlador;
 
 ?>
 <title>Reservas</title>
@@ -23,6 +25,8 @@
     var valido;
     var diasReserva;
     var horasReserva;
+    var r; // Objeto reserva final
+    var centroSel = false;
 
     function meses(){
         reserva = new Array();
@@ -227,7 +231,7 @@
     function reservar(){
       validar();
       if(valido){
-          diaReserva =document.getElementById("dia"+diasReserva[0]).textContent;
+          diaReserva = parseInt(document.getElementById("dia"+diasReserva[0]).textContent)+1;
           mesReserva = mes+1;
           anioReserva = document.getElementById("anio").textContent;
           horaInicio= horasReserva[0];
@@ -235,15 +239,35 @@
           horaFin = horaFin.toString();
           fechaReserva = new Date(anioReserva+"-"+mesReserva+"-"+diaReserva);
           centroReserva = document.getElementById("centro").value;
-          biciReserva = document.getElementById("bici").value;
+          indice = document.getElementById("bici").selectedIndex;
+          biciReserva = document.getElementById("bici")[indice].value;
 
           r = new Reserva(fechaReserva,horaInicio,horaFin);
           r.addCentro(centroReserva);
           r.addBici(biciReserva);
 
-         console.log(r);
+          console.log(r);
+          enviarReserva();
 
       }
+    }
+    function enviarReserva(){
+        crearObjeto();
+        r = JSON.stringify(r);
+        xmlhttp.onreadystatechange = function(){
+
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+            {
+                procesarReserva(xmlhttp.responseText);
+            }
+        }
+
+        xmlhttp.open("POST", "http://localhost/bicisolar/trunk/bicicleta_solar/Controlador/AJAX/enviarReserva.php", true);
+        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8');
+        xmlhttp.send("r="+r);
+    }
+    function procesarReserva(mensaje){
+        alert(mensaje);
     }
     function validar(){
         diasReserva=new Array();
@@ -284,10 +308,9 @@
                     horasValido = true;
                     document.getElementById("errorHoras").style.visibility="hidden";
 
-                    if(document.getElementById("dia"+diasReserva[0]).textContent==""){
+                    if(!centroSel){
                         document.getElementById("errorHoras").style.visibility="visible";
-                        document.getElementById("errorHoras").innerHTML="Este día no es posible reservar";
-                        diaValido = true;
+                        document.getElementById("errorHoras").innerHTML="Selecciona un Centro";
                     }else{
                         document.getElementById("errorHoras").style.visibility="hidden";
                     }
@@ -303,7 +326,7 @@
 
                 //PENDIENTE VALIDAR DIAS VACIOS
 
-        if(diasValido && horasValido && reservaValido)
+        if(diasValido && horasValido && reservaValido && centroSel)
             valido = true;
 
     }
@@ -315,7 +338,6 @@
         reserva = new Array();
         console.log(reserva);
     }
-    //AJAX
     function crearObjeto(){
 
         try
@@ -355,9 +377,16 @@
         xmlhttp.send("centro="+centro);
     }
     function procesarCentro(bici){
-        alert(bici);
         b = JSON.parse(bici);
+        document.getElementById("bici").style.visibility="visible";
+        document.getElementById("titulobici").style.visibility="visible";
+        centroSel = true;
+        capa = document.getElementById("bici");
+        for(var i in b){
+            capa.options[i]=new Option(b[i].id_bicicleta,b[i].id_bicicleta);
+        }
     }
+
 
 
 </script>
@@ -541,26 +570,21 @@
                                 <label class="col-md-4 control-label" for="centro">Centros </label>
                                 <div class="col-md-4">
                                     <select id="centro" name="centro" class="form-control centroAnchor" onchange="cogerBicicleta();">
+                                        <option value="">Selecciona</option>
                                         <?php
-
                                         foreach($centros as $centro ){
                                             ?>
                                             <?php
                                             echo "<option value='".$centro->getIdCentro()."'>".$centro->getNombre()."</option>";
-
                                         }
                                         ?>
                                     </select>
                                 </div><br/><br/><br/>
                                 <!-- Select Basic -->
-                                <label class="col-md-4 control-label" for="centro">Bicicleta </label>
+                                <label class="col-md-4 control-label oculto" for="bici" id="titulobici">Bicicleta </label>
                                 <div class="col-md-4">
-                                    <select id="bici" name="bici" class="form-control centroAnchor">
-                                            <?php
-                                                foreach($centros[0]->getBicis as $bici){
-                                                    echo "<option value='".$bici->getIdBicicleta()."'>".$bici->getIdBicicleta()."</option>";
-                                                }
-                                            ?>
+                                    <select id="bici" name="bici" class="form-control centroAnchor oculto">
+
                                     </select>
                                 </div><br/><br/><br/>
                         <input type="button" class="btn btn-success" value="Reservar" onclick="reservar();"/>
