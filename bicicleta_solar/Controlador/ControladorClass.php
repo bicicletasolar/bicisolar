@@ -52,6 +52,10 @@ class Controlador{
         return $centros;
     }
 
+    public static function selectBateria(){
+
+    }
+
 
 }
 
