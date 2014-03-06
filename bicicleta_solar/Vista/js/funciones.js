@@ -258,7 +258,11 @@ function procesarReserva(mensaje){
     men = "";
     if(mensaje == 1){
         men = "Reserva realizada con éxito";
+        document.getElementById("mensajeReserva").className='alert alert-success';
         document.getElementById("mensajeReserva").innerHTML=men;
+    }else{
+        document.getElementById("mensajeReserva").className='alert alert-danger';
+        document.getElementById("mensajeReserva").innerHTML=mensaje;
     }
 }
 function validar(){
@@ -328,9 +332,8 @@ function validar(){
         }
     }
 
-    //PENDIENTE VALIDAR DIAS VACIOS
 
-    if(diasValido && horasValido && reservaValido && centroSel && biciSel)
+    if(diasValido && horasValido && reservaValido && centroSel && biciSel && diaValido)
         valido = true;
 
 }
