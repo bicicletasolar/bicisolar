@@ -11,8 +11,10 @@ var valido;
 var diasReserva;
 var horasReserva;
 var r; // Objeto reserva final
+var re;
 var centroSel = false;
 var biciSel = false;
+var horasOcupadas;
 
 function meses(){
     reserva = new Array();
@@ -341,6 +343,10 @@ function validar(){
 }
 function vaciarHoras(){
 
+    for(var x in horasOcupadas){
+        document.getElementById(horasOcupadas[x]).src="img/no.png";
+    }
+
     for(var x in reserva){
         document.getElementById(reserva[x]).src="img/no.png";
     }
@@ -427,9 +433,49 @@ function cogerReservasBD(bici){
     xmlhttp.send("centro="+centro+"&bici="+bici.value);
 }
 function procesarDatos(reservas){
-
-
-    r = JSON.parse(reservas);
     console.log(reservas);
-
+    re = JSON.parse(reservas);
+    pintarOcupados();
 }
+
+function pintarOcupados(){
+    horasOcupadas = new Array();
+    for(var i in re){
+
+        anio2 = re[i].fecha.substr(0,4);
+        mes2 = re[i].fecha.substr(5,2);
+        dia2 = re[i].fecha.substr(8,2);
+        horainicio2 = re[i].horaInicio;
+        horafin2 = re[i].horaFin;
+        // Valido para coger mes de array
+        if(mes2 < 10)
+            mes2 = mes2.substr(1,1)-1;
+        else
+            mes2 = mes2-1;
+
+        if(dia2 < 10)
+            dia2 = dia2.substr(1,1);
+
+        if(document.getElementById("anio").textContent==anio2){
+            if(document.getElementById("mes").textContent==meses[mes2]){
+                for(x = 1 ; x < 6 ; x++){
+                    if(document.getElementById("dia"+x).textContent==dia2){
+                        if(horainicio2<10)
+                            horainicio2 = 0+horainicio2;
+                        if(horafin2<10)
+                            horafin2 = 0+horafin2;
+
+                        for(e = horainicio2 ; e < horafin2 ; e++){
+
+                            document.getElementById(e+""+x).src="img/3.png";
+                            horasOcupadas[horasOcupadas.length] = e+""+x;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+

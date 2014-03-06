@@ -197,9 +197,9 @@
                     <th>19:00 - 20:00</th>
                     <th><img src="img/no.png" onclick="activarHora(this);" class="" id="191"/></th>
                     <th><img src="img/no.png" onclick="activarHora(this);" class="" id="192"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="193"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="194"/></th>
-                    <th><img src="img/no.png" onclick="activarHora(this);" class=""  id="195"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="193"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="194"/></th>
+                    <th><img src="img/no.png" onclick="activarHora(this);" class="" id="195"/></th>
                 </tr>
             </table>
           </div>

@@ -7,6 +7,6 @@ $centro = $_POST['centro'];
 $bici = $_POST['bici'];
 
 $reservas = BD\bdReserva::getReservas2($centro,$bici);
-var_dump($reservas);
-die();
+
+
 echo json_encode($reservas);

@@ -12,9 +12,9 @@ require_once __DIR__."/UsuarioClass.php";
 
 class Reserva {
     private $id_reserva;
-    private $fecha;
-    private $horaInicio;
-    private $horaFin;
+    public  $fecha;
+    public  $horaInicio;
+    public  $horaFin;
     private $usuario;
     private $centro;
     private $bicicleta;
