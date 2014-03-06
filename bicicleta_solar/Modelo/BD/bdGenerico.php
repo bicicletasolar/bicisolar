@@ -51,7 +51,8 @@ class BdGenerico {
             case "Reserva":
                 while($fila=mysql_fetch_assoc($rs))
                 {
-                    $objetos[]=new Reserva($fila['centro'],$fila['estado'],$fila['fechaFin'],$fila['fechaInicio'],$fila['horaFin'],$fila['horaInicio']);
+                    $centro = new Centro($fila['id_Centro']);
+                    $objetos[]=new Reserva($centro,$fila['fecha'],$fila['horaFin'],$fila['horaInicio'],$fila['id_reserva']);
                 }
                 break;
             case "Centro":
@@ -80,4 +81,4 @@ class BdGenerico {
         return $objetos;
 
     }
-} 
+}

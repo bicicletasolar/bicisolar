@@ -12,25 +12,21 @@ require_once __DIR__."/UsuarioClass.php";
 
 class Reserva {
     private $id_reserva;
-    private $fechaInicio;
-    private $fechaFin;
+    private $fecha;
     private $horaInicio;
     private $horaFin;
-    private $estado;
     private $usuario;
     private $centro;
     private $bicicleta;
 
 
 
-    private function __construct1($centro=null, $estado=null, $fechaFin=null, $fechaInicio=null, $horaFin=null, $horaInicio=null, $id_reserva=null, $usuario=null,$bicicleta=null)
+    private function __construct1($centro=null, $fecha=null, $horaFin=null, $horaInicio=null, $id_reserva=null, $usuario=null,$bicicleta=null)
     {
         $this->setIdReserva($id_reserva);
-        $this->setFechaInicio($fechaInicio);
-        $this->setFechaFin($fechaFin);
+        $this->setFecha($fecha);
         $this->setHoraInicio($horaInicio);
         $this->setHoraFin($horaFin);
-        $this->setEstado($estado);
         if($usuario){
         $this->setUsuario($usuario);
         }
@@ -52,12 +48,13 @@ class Reserva {
             case 0:
                 $this->__construct1();
                 break;
-            case 8:
+            case 5:
+                $this->__construct1($args[0],$args[1],$args[2],$args[3],$args[4]);
+                break;
+            case 7:
                 $this->__construct1($args[0],$args[1],$args[2],$args[3],$args[4],$args[5],$args[6],$args[7]);
                 break;
-            case 9:
-                $this->__construct1($args[0],$args[1],$args[2],$args[3],$args[4],$args[5],$args[6],$args[7],$args[8]);
-                break;
+
         }
     }
 
@@ -81,52 +78,24 @@ class Reserva {
     }
 
     /**
-     * @param mixed $estado
+     * @param mixed $fecha
      */
-    public function setEstado($estado)
+    public function setFecha($fecha)
     {
-        $this->estado = $estado;
+        $this->fecha = $fecha;
     }
 
     /**
      * @return mixed
      */
-    public function getEstado()
+    public function getFecha()
     {
-        return $this->estado;
+        return $this->fecha;
     }
 
-    /**
-     * @param mixed $fechaFin
-     */
-    public function setFechaFin($fechaFin)
-    {
-        $this->fechaFin = $fechaFin;
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getFechaFin()
-    {
-        return $this->fechaFin;
-    }
 
-    /**
-     * @param mixed $fechaInicio
-     */
-    public function setFechaInicio($fechaInicio)
-    {
-        $this->fechaInicio = $fechaInicio;
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getFechaInicio()
-    {
-        return $this->fechaInicio;
-    }
 
     /**
      * @param mixed $horaFin

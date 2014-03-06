@@ -426,6 +426,6 @@ function cogerReservasBD(bici){
 }
 function procesarDatos(reservas){
     alert(reservas);
-    //r = JSON.parse(reservas)
 
+    r = JSON.parse(reservas)
 }
