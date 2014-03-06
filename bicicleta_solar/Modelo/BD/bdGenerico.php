@@ -72,8 +72,7 @@ class BdGenerico {
             case "Bici":
 
                 while($fila=mysql_fetch_assoc($rs)){
-                    $bateria=new Bateria($fila['corriente'],$fila['tension'],$fila['carga']);
-                    $objetos[]=new Bicicleta($fila['id_bicicleta'],$bateria);
+                    $objetos[]=new Bicicleta($fila['id_bicicleta']);
                 }
                 break;
 

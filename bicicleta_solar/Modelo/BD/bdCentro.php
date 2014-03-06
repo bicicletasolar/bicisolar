@@ -32,14 +32,7 @@ class bdCentro extends bdGenerico{
     public static function getBicis($centro){
         $conexion=parent::abrirConexion();
 
-        if(is_a($centro,"bicicleta_solar\Modelo\Base\Centro"))
-        {
-            $query="select * from bicicleta where id_centro='".$centro->getIdCentro()."'";
-        }
-        else
-        {
             $query="select * from bicicleta where id_centro=".$centro."";
-        }
         $rs=mysql_query($query,$conexion) or die(mysql_error());
 
         $bicis=parent::convertirArrays($rs,"Bici");

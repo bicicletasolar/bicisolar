@@ -19,9 +19,8 @@ class Bicicleta {
     private $reserva;
 
 
-    private function __construct1($id_bicicleta=null,Bateria $bateria=null, Centro $centro=null,Reserva $reserva=null)
+    private function __construct1($id_bicicleta=null, Centro $centro=null,Reserva $reserva=null)
     {
-        $this->setBateria($bateria);
         $this->setIdBicicleta($id_bicicleta);
         $this->setCentro($centro);
         $this->setReserva($reserva);
@@ -74,18 +73,7 @@ class Bicicleta {
     /**
      * @param \Bicicleta_solar\Modelo\Base\Bateria $bateria
      */
-    public function setBateria(Bateria $bateria)
-    {
-        $this->bateria = $bateria;
-    }
 
-    /**
-     * @return \Bicicleta_solar\Modelo\Base\Bateria
-     */
-    public function getBateria()
-    {
-        return $this->bateria;
-    }
 
     /**
      * @param mixed $centro
