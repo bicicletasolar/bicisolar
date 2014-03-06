@@ -84,9 +84,11 @@ class bdReserva extends bdGenerico{
 
     public static function introducirReserva($reserva,Usuario $usuario)
     {
+        $fecha = new date("YYYY-mm-dd",$reserva->fecha);
+
         $conexion=parent::abrirConexion();
         mysql_query("START TRANSACTION");
-       $query = "Insert into reserva values(0,'2014-02-01',".$reserva->horaInicio.",".$reserva->horaFinal.",".$usuario->getIdUsuario().",".$reserva->centro.",".$reserva->bici.")";
+        $query = "Insert into reserva values(0,'".$fecha."',".$reserva->horaInicio.",".$reserva->horaFinal.",".$usuario->getIdUsuario().",".$reserva->centro.",".$reserva->bici.")";
         try
         {
             $res = mysql_query($query, $conexion);
