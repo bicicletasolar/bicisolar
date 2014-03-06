@@ -225,14 +225,14 @@
                                             <?php
                                             echo "<option value='".$centro->getIdCentro()."'>".$centro->getNombre()."</option>";
                                         }
+
                                         ?>
                                     </select>
                                 </div><br/><br/><br/>
                                 <!-- Select Basic -->
                                 <label class="col-md-4 control-label oculto formatoLetra" for="bici" id="titulobici">Bicicleta </label>
                                 <div class="col-md-4">
-                                    <select id="bici" name="bici" class="form-control centroAnchor oculto">
-                                        <option value="">Selecciona</option>
+                                    <select id="bici" name="bici" class="form-control centroAnchor oculto" onchange="cogerReservasBD(this);">
                                     </select>
                                 </div><br/><br/><br/>
                         <input type="button" class="btn btn-success" value="Reservar" onclick="reservar();"/>
@@ -271,5 +271,9 @@
     <!-- Fin de tabla reservas-->
 
 <?php
+echo "<PRE>";
+var_dump($centros);
+echo "</PRE>";
+die();
 require_once __DIR__.'/footer.php';
 ?>
