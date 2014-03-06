@@ -33,8 +33,7 @@ class bdReserva extends bdGenerico{
         $conexion=parent::abrirConexion();
 
         $query="Select * from reserva where id_bicicleta=".$bici." and id_Centro=".$centro."";
-         var_dump($query);
-        die();
+
         $rs = mysql_query($query,$conexion) or die(mysql_error());
 
         $reservas = parent::convertirArrays($rs, "Reserva");
@@ -111,6 +110,8 @@ class bdReserva extends bdGenerico{
         mysql_query("COMMIT");
 
         parent::cerrarConexion($conexion);
+
+        return 1;
     }
 
     public static function getBicicleta(Reserva $reserva)

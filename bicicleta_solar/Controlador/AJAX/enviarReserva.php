@@ -6,4 +6,6 @@ use bicicleta_solar\Modelo\BD;
 $reserva = json_decode($_POST['r']);
 
 $usuario=unserialize($_SESSION['persona']);
-BD\bdReserva::introducirReserva($reserva,$usuario);
+$respuesta = BD\bdReserva::introducirReserva($reserva,$usuario);
+
+echo $respuesta;
