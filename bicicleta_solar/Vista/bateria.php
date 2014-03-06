@@ -222,6 +222,7 @@ require_once __DIR__.'/header.php';
                     </div>
 
                 </fieldset>
+                <input type="button" class="btn btn-primary" value="Procesar"/>
                 <input type="reset" class="btn btn-primary" value="Restablecer" onclick="vaciarCampos();"/>
 
             </form>
