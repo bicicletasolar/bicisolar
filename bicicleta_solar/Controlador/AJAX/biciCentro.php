@@ -6,6 +6,6 @@ use bicicleta_solar\Modelo\BD;
 $centro = $_POST['centro'];
 $bici = $_POST['bici'];
 
-$reservas = BD\bdReserva::getReservas($centro,$bici);
+$reservas = BD\bdReserva::getReservas2($centro,$bici);
 
 echo $bici." ".$centro;

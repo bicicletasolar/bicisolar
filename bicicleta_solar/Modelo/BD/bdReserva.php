@@ -17,8 +17,24 @@ class bdReserva extends bdGenerico{
     {
         $conexion=parent::abrirConexion();
 
-        $query="Select * from reserva where id_bicicleta'".$bici->getIdBicicleta();"' ";
+        $query="Select * from reserva where id_bicicleta='".$bici->getIdBicicleta();"' ";
 
+        $rs = mysql_query($query,$conexion) or die(mysql_error());
+
+        $reservas = parent::convertirArrays($rs, "Reserva");
+
+        parent:: cerrarConexion($conexion);
+
+        return $reservas;
+
+    }
+    public static function getReservas2($centro,$bici) // Metodo para recoger todas las reservas realizadas
+    {
+        $conexion=parent::abrirConexion();
+
+        $query="Select * from reserva where id_bicicleta=".$bici." and id_Centro=".$centro."";
+         var_dump($query);
+        die();
         $rs = mysql_query($query,$conexion) or die(mysql_error());
 
         $reservas = parent::convertirArrays($rs, "Reserva");
