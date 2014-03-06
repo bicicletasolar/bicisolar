@@ -224,11 +224,13 @@ function reservar(){
         horaFin = parseInt(horasReserva[horasReserva.length-1])+1;
         horaFin = horaFin.toString();
         fechaReserva = new Date(anioReserva+"-"+mesReserva+"-"+diaReserva);
+        var fecha = Math.round(fechaReserva/1000); // Fecha en milisegundos
+
         centroReserva = document.getElementById("centro").value;
         indice = document.getElementById("bici").selectedIndex;
         biciReserva = document.getElementById("bici")[indice].value;
 
-        r = new Reserva(fechaReserva,horaInicio,horaFin);
+        r = new Reserva(fecha,horaInicio,horaFin);
         r.addCentro(centroReserva);
         r.addBici(biciReserva);
 
