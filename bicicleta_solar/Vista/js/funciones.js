@@ -279,8 +279,8 @@ function validar(){
     //Validar que reservas no está vacío
     if(reserva.length==0)
     {
-        document.getElementById("errorHoras").style.visibility="visible";
-        document.getElementById("errorHoras").innerHTML="Seleccione al menos una hora";
+        document.getElementById("mensajeReserva").className='alert alert-danger';
+        document.getElementById("mensajeReserva").innerHTML="Seleccione al menos una hora";
     }
     else
     {
@@ -304,18 +304,18 @@ function validar(){
                 horasValido = true;
                 document.getElementById("errorHoras").style.visibility="hidden";
                 if(document.getElementById("dia"+diasReserva[0]).textContent==""){
-                    document.getElementById("errorHoras").style.visibility="visible";
-                    document.getElementById("errorHoras").innerHTML="Este día no es posible reservar";
+                    document.getElementById("mensajeReserva").className='alert alert-danger';
+                    document.getElementById("mensajeReserva").innerHTML="Este día no es posible reservar";
                 }else{
                     if(!centroSel){
-                        document.getElementById("errorHoras").style.visibility="visible";
-                        document.getElementById("errorHoras").innerHTML="Selecciona un Centro";
+                        document.getElementById("mensajeReserva").className='alert alert-danger';
+                        document.getElementById("mensajeReserva").innerHTML="Selecciona un centro";
 
                     }else{
                         document.getElementById("errorHoras").style.visibility="hidden";
                         if(!biciSel){
-                            document.getElementById("errorHoras").style.visibility="visible";
-                            document.getElementById("errorHoras").innerHTML="Selecciona una bicicleta";
+                            document.getElementById("mensajeReserva").className='alert alert-danger';
+                            document.getElementById("mensajeReserva").innerHTML="Selecciona una bicicleta";
                         }else{
                             document.getElementById("errorHoras").style.visibility="hidden";
                         }
@@ -323,12 +323,12 @@ function validar(){
                     diaValido = true;
                 }
             }else{
-                document.getElementById("errorHoras").style.visibility="visible";
-                document.getElementById("errorHoras").innerHTML="Todas las horas deben ser continuas";
+                document.getElementById("mensajeReserva").className='alert alert-danger';
+                document.getElementById("mensajeReserva").innerHTML="Todas las horas deben de ser continuas";
             }
         }else{
-            document.getElementById("errorHoras").style.visibility="visible";
-            document.getElementById("errorHoras").innerHTML="La reserva debe de ser para máximo un día";
+            document.getElementById("mensajeReserva").className='alert alert-danger';
+            document.getElementById("mensajeReserva").innerHTML="La reserva debe de ser para máximo un día";
         }
     }
 
