@@ -32,6 +32,7 @@ else
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="dist/css/estilos.css" rel="stylesheet">
     <link href="dist/css/justified-nav.css" rel="stylesheet">
+      <link rel="stylesheet" href="dist/css/baterisBici.css"/>
       <meta charset="utf-8">
 
       <script type="text/javascript" src="ClasesJS/Reserva.js"></script>
