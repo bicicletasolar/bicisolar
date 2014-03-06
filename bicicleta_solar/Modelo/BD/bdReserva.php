@@ -102,9 +102,11 @@ class bdReserva extends bdGenerico{
             }
         }
         catch (MySQLException $e) {
-            echo "Error.Codigo: ".$e->getCode()."\n Mensaje: ".$e->getMessage();
+            $men = "Error.Codigo: ".$e->getCode()."\n Mensaje: ".$e->getMessage();
             mysql_query("ROLLBACK");
             parent::cerrarConexion($conexion);
+
+            return $men;
         }
 
         mysql_query("COMMIT");
