@@ -8,7 +8,6 @@
 
 ?>
 <script type="text/javascript" src="js/funciones.js"></script>
-<script type="text/javascript" src="js/simpleDateFormat.js"></script>
 
 <title>Reservas</title>
 <meta charset="utf-8">

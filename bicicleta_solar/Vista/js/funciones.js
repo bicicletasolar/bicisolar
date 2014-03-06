@@ -217,7 +217,7 @@ function reservar(){
     validar();
 
     if(valido){
-        diaReserva = parseInt(document.getElementById("dia"+diasReserva[0]).textContent)+1;
+        diaReserva = document.getElementById("dia"+diasReserva[0]).textContent;
         mesReserva = mes+1;
         anioReserva = document.getElementById("anio").textContent;
         horaInicio= horasReserva[0];
@@ -427,7 +427,9 @@ function cogerReservasBD(bici){
     xmlhttp.send("centro="+centro+"&bici="+bici.value);
 }
 function procesarDatos(reservas){
-    alert(reservas);
 
-    r = JSON.parse(reservas)
+
+    r = JSON.parse(reservas);
+    console.log(reservas);
+
 }
