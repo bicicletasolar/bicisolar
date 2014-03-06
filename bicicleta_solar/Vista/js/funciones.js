@@ -12,6 +12,7 @@ var diasReserva;
 var horasReserva;
 var r; // Objeto reserva final
 var centroSel = false;
+var biciSel = false;
 
 function meses(){
     reserva = new Array();
@@ -304,6 +305,12 @@ function validar(){
 
                     }else{
                         document.getElementById("errorHoras").style.visibility="hidden";
+                        if(!biciSel){
+                            document.getElementById("errorHoras").style.visibility="visible";
+                            document.getElementById("errorHoras").innerHTML="Selecciona una bicicleta";
+                        }else{
+                            document.getElementById("errorHoras").style.visibility="hidden";
+                        }
                     }
                     diaValido = true;
                 }
@@ -319,7 +326,7 @@ function validar(){
 
     //PENDIENTE VALIDAR DIAS VACIOS
 
-    if(diasValido && horasValido && reservaValido && centroSel)
+    if(diasValido && horasValido && reservaValido && centroSel && biciSel)
         valido = true;
 
 }
@@ -370,7 +377,6 @@ function cogerBicicleta(){
 }
 function procesarCentro(bici){
 
-    //PENDIENTE
         while(document.getElementById("bici").options.length > 0){
             document.getElementById("bici").remove(0);
         }
@@ -380,7 +386,9 @@ function procesarCentro(bici){
     document.getElementById("titulobici").style.visibility="visible";
     centroSel = true;
     capa = document.getElementById("bici");
-
+    var option = document.createElement("option");
+    option.text = "Selecciona";
+    capa.add(option);
 
     for(var i in b){
         var option = document.createElement("option");
@@ -389,8 +397,28 @@ function procesarCentro(bici){
     }
 
 
+}
+function cogerReservasBD(bici){
+    biciSel = true;
 
+    indice = document.getElementById("centro").selectedIndex;
+    centro = document.getElementById("centro")[indice].value;
+    crearObjeto();
 
+    xmlhttp.onreadystatechange = function(){
+
+        if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+        {
+            procesarDatos(xmlhttp.responseText);
+        }
+    }
+
+    xmlhttp.open("POST", "http://localhost/bicisolar/trunk/bicicleta_solar/Controlador/AJAX/biciCentro.php", true);
+    xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8');
+    xmlhttp.send("centro="+centro+"&bici="+bici.value);
+}
+function procesarDatos(reservas){
+    alert(reservas);
+    //r = JSON.parse(reservas)
 
 }
-
