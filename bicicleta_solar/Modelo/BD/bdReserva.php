@@ -89,9 +89,11 @@ class bdReserva extends bdGenerico{
         $conexion=parent::abrirConexion();
         mysql_query("START TRANSACTION");
         $query = "Insert into reserva values(0,'".$fecha."',".$reserva->horaInicio.",".$reserva->horaFinal.",".$usuario->getIdUsuario().",".$reserva->centro.",".$reserva->bici.")";
+
         try
         {
             $res = mysql_query($query, $conexion);
+
             if (!$res) {
                 $errno = mysql_errno($conexion);
                 $error = mysql_error($conexion);
@@ -102,6 +104,7 @@ class bdReserva extends bdGenerico{
                         break;
                 }
             }
+
         }
         catch (MySQLException $e) {
             $men = "Error.Codigo: ".$e->getCode()."\n Mensaje: ".$e->getMessage();

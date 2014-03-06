@@ -18,19 +18,32 @@ use bicicleta_solar\Controlador;
         }
 
         // Para Mes
-        meses=new Array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
         capa = document.getElementById("mes");
+        var option = document.createElement("option");
+        option.text = "Selecciona";
+        capa.add(option);
+        meses=new Array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
         for(x = 0 ; x <= 11 ; x++){
-            capa.options[x]=new Option(meses[x],x);
+            //capa.options[x]=new Option(meses[x],x);
+            var option = document.createElement("option");
+            option.text = meses[x];
+            option.value = x;
+            capa.add(option);
         }
+
+
 
     }
     function calcularDias(mes){
         // Para Días
-        monthdays = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-
-
         capa = document.getElementById("dia");
+
+        while(capa.options.length > 0){
+            capa.remove(0);
+        }
+
+        monthdays = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+        capa.className="form-control anchoSelect2";
         for(x = 0 ; x < monthdays[mes.value] ; x++){
             capa.options[x]=new Option(x+1,x+1);
         }
@@ -105,7 +118,14 @@ use bicicleta_solar\Controlador;
         itv_bici2 = setInterval(prog_bici2, 100);
         crearSelect();
     }
-
+    function vaciarCampos(){
+        capa= document.getElementById("dia");
+        capa.className = "form-control anchoSelect";
+        while(capa.options.length > 0){
+            capa.remove(0);
+        }
+        capa.options[0] = new Option("Selecciona");
+    }
 </script>
 </head>
 
@@ -195,13 +215,15 @@ require_once __DIR__.'/header.php';
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="dia">Día (opcional)</label>
                         <div class="col-md-4">
-                            <select id="dia" name="dia" class="form-control anchoSelect2">
-
+                            <select id="dia" name="dia" class="form-control anchoSelect">
+                                <option value="Selecciona">Selecciona</option>
                             </select>
                         </div>
                     </div>
 
                 </fieldset>
+                <input type="reset" class="btn btn-primary" value="Restablecer" onclick="vaciarCampos();"/>
+
             </form>
 
             </fieldset>
