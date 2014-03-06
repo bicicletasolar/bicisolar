@@ -1,7 +1,8 @@
-#contenedor {
+#imagen_baterias {
    background: url(../../img/instalacion_final_sin_bateria.png) no-repeat;
    width: 620px;
    height: 660px;
+
 }
 
 #bateria_general {
