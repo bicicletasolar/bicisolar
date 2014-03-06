@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-03-2014 a las 12:55:28
+-- Tiempo de generación: 06-03-2014 a las 09:13:14
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -101,9 +101,8 @@ INSERT INTO `centro` (`id_centro`, `nombre`, `direccion`) VALUES
 CREATE TABLE IF NOT EXISTS `reserva` (
   `id_reserva` int(20) NOT NULL AUTO_INCREMENT,
   `fecha` date NOT NULL,
-  `horaInicio` date NOT NULL,
-  `horaFin` date NOT NULL,
-  `estado` varchar(20) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `horaInicio` int(5) NOT NULL,
+  `horaFin` int(5) NOT NULL,
   `id_Usuario` int(20) NOT NULL,
   `id_Centro` int(20) NOT NULL,
   `id_bicicleta` int(20) NOT NULL,
@@ -111,7 +110,15 @@ CREATE TABLE IF NOT EXISTS `reserva` (
   KEY `id_Usuario` (`id_Usuario`,`id_Centro`),
   KEY `id_Centro` (`id_Centro`),
   KEY `id_bicicleta` (`id_bicicleta`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Volcado de datos para la tabla `reserva`
+--
+
+INSERT INTO `reserva` (`id_reserva`, `fecha`, `horaInicio`, `horaFin`, `id_Usuario`, `id_Centro`, `id_bicicleta`) VALUES
+(9, '2014-02-01', 8, 9, 3, 4, 7),
+(10, '2014-02-01', 8, 12, 3, 5, 10);
 
 -- --------------------------------------------------------
 
@@ -156,7 +163,7 @@ ALTER TABLE `bicicleta`
 ALTER TABLE `reserva`
   ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`id_bicicleta`) REFERENCES `bicicleta` (`id_bicicleta`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reserva_ibfk_2` FOREIGN KEY (`id_Usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `reserva_ibfk_3` FOREIGN KEY (`id_Centro`) REFERENCES `arbolsolar` (`id_centro`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `reserva_ibfk_4` FOREIGN KEY (`id_Centro`) REFERENCES `centro` (`id_centro`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
