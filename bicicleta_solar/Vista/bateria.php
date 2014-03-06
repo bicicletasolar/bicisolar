@@ -1,3 +1,10 @@
+<?php
+namespace bicicleta_solar\Vista;
+require_once __DIR__."/../Controlador/ControladorClass.php";
+use bicicleta_solar\Controlador;
+
+?>
+
 <title>Baterías</title>
 <meta charset="utf-8">
 <script type="text/javascript">
@@ -30,10 +37,78 @@
 
     }
 
+    // Esto esta hecho por ohiane y pertenece al grafico de la bateria general y las baterias de las bicis.
+
+    var maxprogress_general = 120;
+    var actualprogress_general = 0;
+    var itv_general = 0;
+    function prog_general()
+    {
+        if(actualprogress_general >= maxprogress_general)
+        {
+            clearInterval(itv_general);
+            maxprogress_general = 120;
+            actualprogress_general = 0;
+            itv_general = setInterval(prog_general, 100)
+
+        }
+        var progressnum_general = document.getElementById("progressnum_general");
+        var indicador_general = document.getElementById("indicador_general");
+        actualprogress_general += 1;
+        indicador_general.style.width=actualprogress_general + "px";
+        progressnum_general.innerHTML = (maxprogress_general - actualprogress_general) + " MS Faltantes";
+    }
+
+    var maxprogress_bici1 = 68;
+    var actualprogress_bici1 = 0;
+    var itv_bici1 = 0;
+    function prog_bici1()
+    {
+        if(actualprogress_bici1 >= maxprogress_bici1)
+        {
+            clearInterval(itv_bici1);
+            maxprogress_bici1 = 68;
+            actualprogress_bici1 = 0;
+            itv_bici1 = setInterval(prog_bici1, 100)
+
+        }
+        var progressnum_bici1 = document.getElementById("progressnum_bici1");
+        var indicador_bici1 = document.getElementById("indicador_bici1");
+        actualprogress_bici1 += 1;
+        indicador_bici1.style.height=actualprogress_bici1 + "px";
+        progressnum_bici1.innerHTML = (maxprogress_bici1 - actualprogress_bici1) + " %";
+    }
+
+    var maxprogress_bici2 = 68;
+    var actualprogress_bici2 = 0;
+    var itv_bici2 = 0;
+    function prog_bici2()
+    {
+        if(actualprogress_bici2 >= maxprogress_bici2)
+        {
+            clearInterval(itv_bici2);
+            maxprogress_bici2 = 68;
+            actualprogress_bici2 = 0;
+            itv_bici2 = setInterval(prog_bici2, 100)
+
+        }
+        var progressnum_bici2 = document.getElementById("progressnum_bici2");
+        var indicador_bici2 = document.getElementById("indicador_bici2");
+        actualprogress_bici2 += 1;
+        indicador_bici2.style.height=actualprogress_bici2 + "px";
+        progressnum_bici2.innerHTML = (maxprogress_bici2 - actualprogress_bici2) + " %";
+    }
+    function cargar()
+    {
+        itv_general = setInterval(prog_general, 100);
+        itv_bici1 = setInterval(prog_bici1, 100);
+        itv_bici2 = setInterval(prog_bici2, 100)
+    }
+
 </script>
 </head>
 
-<body onload="crearSelect();">
+<body onload="crearSelect(); cargar(); <?php Controlador\Controlador::selectBateria(); ?>">
 
 <div class="container">
     <img src="img/logo.jpg" alt="egibide"/>
@@ -58,9 +133,36 @@ require_once __DIR__.'/header.php';
 
         <!-- Gráfico Árbol-->
         <div class="col-md-7">
-
+            <div id="imagen_baterias">
             <h2 style="text-align: center">Grafico de Árbol</h2>
+            <div id="bateria_general">
+                <div id="precargador_general">
 
+                    <div id="progressbar_general">
+                        <div id="indicador_general"></div>
+                    </div>
+                    <p id="progressnum_general"></p>
+                </div>
+            </div>
+            <div id="bateria_bici1">
+                <div id="precargador_bici1">
+
+                    <div id="progressbar_bici1">
+                        <div id="indicador_bici1"></div>
+                    </div>
+                    <p id="progressnum_bici1"></p>
+                </div>
+            </div>
+            <div id="bateria_bici2">
+                <div id="precargador_bici2">
+
+                    <div id="progressbar_bici2">
+                        <div id="indicador_bici2"></div>
+                    </div>
+                    <p id="progressnum_bici2"></p>
+                </div>
+            </div>
+            </div>
         </div>
 
 
