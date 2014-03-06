@@ -67,13 +67,16 @@
     <!-- Tabla de reservas-->
      <div class="row marginTop seleccion">
       <div class="col-md-8">
+          <div class="" id="mensajeReserva"></div>
+
           <div class="panel panel-default ">
             <!-- Default panel contents -->
             <div class="panel-heading centrado">
                 Reservas <span id="anio"></span>
             </div>
             <!-- Table -->
-            <table class="table table-striped table-bordered " border="1">
+
+              <table class="table table-striped table-bordered " border="1">
                 <td colspan="3"><button onclick="mesAnt();" class="btn btn-primary"><span class="glyphicon glyphicon-backward"></span></button></td>
                 <td colspan="5" id="mes"> </td>
                 <td colspan="1"> <button onclick="mesPos();" class="btn btn-primary"><span class="glyphicon glyphicon-forward"></span></button>
@@ -271,9 +274,6 @@
     <!-- Fin de tabla reservas-->
 
 <?php
-echo "<PRE>";
-var_dump($centros);
-echo "</PRE>";
-die();
+
 require_once __DIR__.'/footer.php';
 ?>
