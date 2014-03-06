@@ -26,7 +26,7 @@ class BdGenerico {
     protected static function abrirConexion(){
         $servidor="localhost";
         $usuario="root";
-        $pass="root";
+        $pass="";
         $base_datos="bicicleta_solar";
         $conexion=mysql_connect($servidor,$usuario,$pass);
         mysql_select_db($base_datos,$conexion);
