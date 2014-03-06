@@ -98,17 +98,18 @@ use bicicleta_solar\Controlador;
         indicador_bici2.style.height=actualprogress_bici2 + "px";
         progressnum_bici2.innerHTML = (maxprogress_bici2 - actualprogress_bici2) + " %";
     }
-    function cargar()
+    function iniciar()
     {
         itv_general = setInterval(prog_general, 100);
         itv_bici1 = setInterval(prog_bici1, 100);
-        itv_bici2 = setInterval(prog_bici2, 100)
+        itv_bici2 = setInterval(prog_bici2, 100);
+        crearSelect();
     }
 
 </script>
 </head>
 
-<body onload="crearSelect(); cargar(); <?php Controlador\Controlador::selectBateria(); ?>">
+<body onload="iniciar() <?php Controlador\Controlador::selectBateria(); ?>">
 
 <div class="container">
     <img src="img/logo.jpg" alt="egibide"/>
@@ -133,8 +134,9 @@ require_once __DIR__.'/header.php';
 
         <!-- Gráfico Árbol-->
         <div class="col-md-7">
-            <div id="imagen_baterias">
             <h2 style="text-align: center">Grafico de Árbol</h2>
+            <div id="imagen_baterias">
+
             <div id="bateria_general">
                 <div id="precargador_general">
 
