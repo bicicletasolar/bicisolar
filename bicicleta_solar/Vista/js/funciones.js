@@ -255,7 +255,11 @@ function enviarReserva(){
     xmlhttp.send("r="+r);
 }
 function procesarReserva(mensaje){
-    alert(mensaje);
+    men = "";
+    if(mensaje == 1){
+        men = "Reserva realizada con éxito";
+        document.getElementById("mensajeReserva").innerHTML=men;
+    }
 }
 function validar(){
     diasReserva=new Array();
