@@ -19,31 +19,6 @@
 </head>
 
 <body onload="meses()">
-<!-- MODAL
-    <div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <a class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
-                    <h4 class="modal-title" id="myModalLabel">Modal Heading</h4>
-                </div>
-                <div class="modal-body">
-                    <h4>Text in a modal</h4>
-                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-                </div>
-                <div class="modal-footer">
-                    <div class="btn-group">
-                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <input type="hidden"  data-toggle="modal" href="#myModal" id="confirmar"/>
--->
 
 <?php
     $centros = Controlador::sacarCentros();
