@@ -198,21 +198,18 @@ function validarPrincipioSemana(){
 }
 function quitarNoHabil(){
     for(x = 1; x <= 6 ; x++){
-        document.getElementById("tr"+x).className="";
+        //document.getElementById("tr"+x).className="";
     }
 }
 function activarHora(hora){
     capa =  document.getElementById(hora.id);
     existe = true;
-
     for(var x in reserva){
         if(reserva[x]==capa.id){
             //delete reserva[x];
             reserva.splice(x,1);
             existe = false;
         }
-
-
 
     }
     if(existe){
@@ -352,14 +349,17 @@ function validar(){
 
 }
 function vaciarHoras(){
-
-   for(var x in horasOcupadas){
+    for(var x in horasOcupadas){
         document.getElementById(horasOcupadas[x]).src="img/no.png";
+
+        document.getElementById(horasOcupadas[x]).setAttribute("onclick", "javascript:activarHora(this);");
     }
 
     for(var x in reserva){
         document.getElementById(reserva[x]).src="img/no.png";
     }
+
+
     reserva = new Array();
 }
 function crearObjeto(){
@@ -413,6 +413,7 @@ function procesarCentro(bici){
     capa = document.getElementById("bici");
     var option = document.createElement("option");
     option.text = "Selecciona";
+    option.value = "Selecciona";
     capa.add(option);
 
     for(var i in b){
@@ -420,6 +421,7 @@ function procesarCentro(bici){
         option.text = b[i].id_bicicleta;
         capa.add(option);
     }
+    vaciarHoras();
 
 
 }
@@ -445,14 +447,14 @@ function cogerReservasBD(bici){
 function procesarDatos(reservas){
     console.log(reservas);
     re = JSON.parse(reservas);
+    vaciarHoras();
     pintarOcupados();
 }
 
 function pintarOcupados(){
-    vaciarHoras();
     horasOcupadas = new Array();
     for(var i in re){
-       // alert("entra");
+
         anio2 = re[i].fecha.substr(0,4);
         mes2 = re[i].fecha.substr(5,2);
         dia2 = re[i].fecha.substr(8,2);
@@ -480,9 +482,9 @@ function pintarOcupados(){
                                 e = 0+""+e;
                             if(e == "009")
                                 e = "09";
-
-                            document.getElementById(e+""+x).src="img/3.png";
                             horasOcupadas[horasOcupadas.length] = e+""+x;
+                            document.getElementById(e+""+x).src="img/3.png";
+                            document.getElementById(e+""+x).style.disable;
                             document.getElementById(e+""+x).onclick="";
                         }
 
