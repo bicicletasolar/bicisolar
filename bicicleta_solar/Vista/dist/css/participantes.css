@@ -1,0 +1,23 @@
+#titular{
+    float:left;
+    text-align: center;
+    margin-left: 300px;
+    margin-top: 80px;
+}
+#texto{
+    float:left;
+    margin-top: 30px;
+    text-align: justify;
+}
+h4{
+    margin-top:60px;
+}
+img{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+}
