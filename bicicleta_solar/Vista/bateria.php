@@ -55,6 +55,7 @@ use bicicleta_solar\Controlador;
     var maxprogress_general = 120;
     var actualprogress_general = 0;
     var itv_general = 0;
+    var t_general = 0;
     function prog_general()
     {
         if(actualprogress_general >= maxprogress_general)
@@ -69,12 +70,13 @@ use bicicleta_solar\Controlador;
         var indicador_general = document.getElementById("indicador_general");
         actualprogress_general += 1;
         indicador_general.style.width=actualprogress_general + "px";
-        progressnum_general.innerHTML = (maxprogress_general - actualprogress_general) + " MS Faltantes";
+        //progressnum_general.innerHTML = (maxprogress_general - actualprogress_general) + " MS Faltantes";
     }
 
     var maxprogress_bici1 = 68;
     var actualprogress_bici1 = 0;
     var itv_bici1 = 0;
+    var t_bici1 = 0;
     function prog_bici1()
     {
         if(actualprogress_bici1 >= maxprogress_bici1)
@@ -89,12 +91,13 @@ use bicicleta_solar\Controlador;
         var indicador_bici1 = document.getElementById("indicador_bici1");
         actualprogress_bici1 += 1;
         indicador_bici1.style.height=actualprogress_bici1 + "px";
-        progressnum_bici1.innerHTML = (maxprogress_bici1 - actualprogress_bici1) + " %";
+        //progressnum_bici1.innerHTML = (maxprogress_bici1 - actualprogress_bici1) + " %";
     }
 
     var maxprogress_bici2 = 68;
     var actualprogress_bici2 = 0;
     var itv_bici2 = 0;
+    var t_bici2 = 0;
     function prog_bici2()
     {
         if(actualprogress_bici2 >= maxprogress_bici2)
@@ -109,16 +112,16 @@ use bicicleta_solar\Controlador;
         var indicador_bici2 = document.getElementById("indicador_bici2");
         actualprogress_bici2 += 1;
         indicador_bici2.style.height=actualprogress_bici2 + "px";
-        progressnum_bici2.innerHTML = (maxprogress_bici2 - actualprogress_bici2) + " %";
+        //progressnum_bici2.innerHTML = (maxprogress_bici2 - actualprogress_bici2) + " %";
     }
     function iniciar()
     {
         itv_general = setInterval(prog_general, 100);
         itv_bici1 = setInterval(prog_bici1, 100);
         itv_bici2 = setInterval(prog_bici2, 100);
-        //t_general=setTimeout("llamadaAjax_general()",9000);
-        //t_bici1=setTimeout("llamadaAjax_bici1()",9000);
-        //t_bici2=setTimeout("llamadaAjax_bici2()",9000);
+        t_general=setInterval(llamadaAjax_general,2000);
+        t_bici1=setInterval(llamadaAjax_bici1,2000);
+        t_bici2=setInterval(llamadaAjax_bici2,2000);
         crearSelect();
     }
     function vaciarCampos(){
@@ -129,19 +132,102 @@ use bicicleta_solar\Controlador;
         }
         capa.options[0] = new Option("Selecciona");
     }
+    function getXml()
+    {
+
+        var xmlHttp;
+        try{
+            xmlHttp =new XMLHttpRequest();
+
+        }catch(e)
+        {
+            try{
+                xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+            }
+            catch(e)
+            {
+                try{
+                    xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+
+                }
+                catch(e)
+                {
+                    alert("Problemas con AJAX!");
+                    return false;
+                }
+            }
+
+
+        }
+
+        return xmlHttp;
+    }
     function llamadaAjax_general()
     {
-        crearObjeto();
+        var xmlhttp=getXml();
+
+
         xmlhttp.onreadystatechange = function () {
+
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
             {
                 progressnum_general.innerHTML = xmlhttp.responseText + " %";
+
+                if(xmlhttp.responseText==100)
+                {
+                    document.getElementById("indicador_general").style.width = "100px";
+                    return;
+                }
+
             }
         }
 
-        xmlhttp.open("POST","http://..../carga_general.php", true);
+        xmlhttp.open("POST","http://localhost/bicisolar/trunk/bicicleta_solar/Vista/PeticionServidor/carga_general.php", true);
         xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=utf-8');
         xmlhttp.send("id_arbol=1");
+        clearInterval(t_general);
+        t_general = setInterval(llamadaAjax_general, 2000);
+
+    }
+    function llamadaAjax_bici1()
+    {
+
+        var xmlhttp=getXml();
+
+
+        xmlhttp.onreadystatechange = function () {
+
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+            {
+                progressnum_bici1.innerHTML = xmlhttp.responseText + " %";
+            }
+        }
+
+        xmlhttp.open("POST","http://localhost/bicisolar/trunk/bicicleta_solar/Vista/PeticionServidor/carga_bici.php", true);
+        xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=utf-8');
+        xmlhttp.send("id_bici=1");
+        clearInterval(t_bici1);
+        t_bici1 = setInterval(llamadaAjax_bici1, 2000);
+    }
+    function llamadaAjax_bici2()
+    {
+
+        var xmlhttp=getXml();
+
+
+        xmlhttp.onreadystatechange = function () {
+
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+            {
+                progressnum_bici2.innerHTML = xmlhttp.responseText + " %";
+            }
+        }
+
+        xmlhttp.open("POST","http://localhost/bicisolar/trunk/bicicleta_solar/Vista/PeticionServidor/carga_bici.php", true);
+        xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=utf-8');
+        xmlhttp.send("id_bici=2");
+        clearInterval(t_bici2);
+        t_bici2 = setInterval(llamadaAjax_bici2, 2000);
     }
 </script>
 </head>
