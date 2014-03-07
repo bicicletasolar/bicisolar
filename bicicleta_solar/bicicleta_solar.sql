@@ -1,12 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 07-03-2014 a las 08:05:56
--- Versión del servidor: 5.5.24-log
--- Versión de PHP: 5.4.3
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 07-03-2014 a las 13:13:19
+-- Versión del servidor: 5.6.11
+-- Versión de PHP: 5.5.3
 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -17,6 +19,8 @@
 --
 -- Base de datos: `bicicleta_solar`
 --
+CREATE DATABASE IF NOT EXISTS `bicicleta_solar` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `bicicleta_solar`;
 
 -- --------------------------------------------------------
 
@@ -37,7 +41,8 @@ CREATE TABLE IF NOT EXISTS `arbolsolar` (
 
 INSERT INTO `arbolsolar` (`id_ArbolSolar`, `id_centro`) VALUES
 (2, 1),
-(3, 1);
+(3, 1),
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -107,7 +112,14 @@ CREATE TABLE IF NOT EXISTS `datosarbol` (
   `id_arbolsolar` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_arbolsolar` (`id_arbolsolar`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `datosarbol`
+--
+
+INSERT INTO `datosarbol` (`id`, `corriente`, `tension`, `carga`, `id_arbolsolar`) VALUES
+(1, 12, 12, 55, 1);
 
 -- --------------------------------------------------------
 
@@ -123,7 +135,15 @@ CREATE TABLE IF NOT EXISTS `datosbicicleta` (
   `id_bicicleta` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_bicicleta` (`id_bicicleta`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `datosbicicleta`
+--
+
+INSERT INTO `datosbicicleta` (`id`, `tension`, `corriente`, `carga`, `id_bicicleta`) VALUES
+(1, 12, 12, 67, 1),
+(2, 12, 12, 89, 2);
 
 -- --------------------------------------------------------
 
@@ -143,17 +163,18 @@ CREATE TABLE IF NOT EXISTS `reserva` (
   KEY `id_Usuario` (`id_Usuario`,`id_Centro`),
   KEY `id_Centro` (`id_Centro`),
   KEY `id_bicicleta` (`id_bicicleta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Volcado de datos para la tabla `reserva`
 --
 
 INSERT INTO `reserva` (`id_reserva`, `fecha`, `horaInicio`, `horaFin`, `id_Usuario`, `id_Centro`, `id_bicicleta`) VALUES
-(9, '2014-02-01', 8, 9, 3, 4, 7),
-(10, '2014-02-01', 8, 12, 3, 5, 10),
-(11, '2014-02-01', 8, 10, 3, 1, 2),
-(12, '2014-02-01', 8, 9, 3, 4, 8);
+(26, '2014-03-07', 9, 12, 4, 1, 2),
+(27, '2014-03-12', 8, 20, 4, 1, 2),
+(28, '2014-03-13', 9, 12, 4, 1, 2),
+(29, '2014-12-05', 12, 13, 4, 5, 10),
+(30, '2014-05-02', 9, 11, 4, 3, 6);
 
 -- --------------------------------------------------------
 
@@ -167,14 +188,15 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `password` varchar(20) NOT NULL,
   `dni` varchar(9) NOT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `password`, `dni`) VALUES
-(3, 'Gonzalo', '12345abcde', '72731967x');
+(3, 'Gonzalo', '12345abcde', '72731967x'),
+(4, 'jose', '1234', '11111111A');
 
 --
 -- Restricciones para tablas volcadas
@@ -190,7 +212,7 @@ ALTER TABLE `arbolsolar`
 -- Filtros para la tabla `bicicleta`
 --
 ALTER TABLE `bicicleta`
-  ADD CONSTRAINT `bicicleta_ibfk_1` FOREIGN KEY (`id_Centro`) REFERENCES `centro` (`id_centro`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `bicicleta_ibfk_1` FOREIGN KEY (`id_centro`) REFERENCES `centro` (`id_centro`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `datosarbol`
