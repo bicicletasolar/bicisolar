@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-03-2014 a las 09:13:14
+-- Tiempo de generación: 07-03-2014 a las 08:05:56
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -25,14 +25,19 @@
 --
 
 CREATE TABLE IF NOT EXISTS `arbolsolar` (
-  `id_ArbolSolar` int(20) NOT NULL,
-  `corriente` int(9) NOT NULL,
-  `tension` int(9) NOT NULL,
-  `carga` int(9) NOT NULL,
+  `id_ArbolSolar` int(20) NOT NULL AUTO_INCREMENT,
   `id_centro` int(9) NOT NULL,
   PRIMARY KEY (`id_ArbolSolar`),
   KEY `id_centro` (`id_centro`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `arbolsolar`
+--
+
+INSERT INTO `arbolsolar` (`id_ArbolSolar`, `id_centro`) VALUES
+(2, 1),
+(3, 1);
 
 -- --------------------------------------------------------
 
@@ -42,29 +47,27 @@ CREATE TABLE IF NOT EXISTS `arbolsolar` (
 
 CREATE TABLE IF NOT EXISTS `bicicleta` (
   `id_bicicleta` int(20) NOT NULL AUTO_INCREMENT,
-  `corriente` int(11) NOT NULL,
-  `tension` int(11) NOT NULL,
-  `carga` int(11) NOT NULL,
   `id_centro` int(11) NOT NULL,
   PRIMARY KEY (`id_bicicleta`),
   KEY `id_Centro` (`id_centro`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Volcado de datos para la tabla `bicicleta`
 --
 
-INSERT INTO `bicicleta` (`id_bicicleta`, `corriente`, `tension`, `carga`, `id_centro`) VALUES
-(1, 0, 0, 0, 1),
-(2, 0, 0, 0, 1),
-(3, 0, 0, 0, 2),
-(4, 0, 0, 0, 2),
-(5, 0, 0, 0, 3),
-(6, 0, 0, 0, 3),
-(7, 0, 0, 0, 4),
-(8, 0, 0, 0, 4),
-(9, 0, 0, 0, 5),
-(10, 0, 0, 0, 5);
+INSERT INTO `bicicleta` (`id_bicicleta`, `id_centro`) VALUES
+(1, 1),
+(2, 1),
+(12, 1),
+(3, 2),
+(4, 2),
+(5, 3),
+(6, 3),
+(7, 4),
+(8, 4),
+(9, 5),
+(10, 5);
 
 -- --------------------------------------------------------
 
@@ -93,6 +96,38 @@ INSERT INTO `centro` (`id_centro`, `nombre`, `direccion`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `datosarbol`
+--
+
+CREATE TABLE IF NOT EXISTS `datosarbol` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `corriente` int(10) NOT NULL,
+  `tension` int(10) NOT NULL,
+  `carga` int(10) NOT NULL,
+  `id_arbolsolar` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_arbolsolar` (`id_arbolsolar`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `datosbicicleta`
+--
+
+CREATE TABLE IF NOT EXISTS `datosbicicleta` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `tension` int(10) NOT NULL,
+  `corriente` int(10) NOT NULL,
+  `carga` int(10) NOT NULL,
+  `id_bicicleta` int(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_bicicleta` (`id_bicicleta`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `reserva`
 --
 
@@ -108,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `reserva` (
   KEY `id_Usuario` (`id_Usuario`,`id_Centro`),
   KEY `id_Centro` (`id_Centro`),
   KEY `id_bicicleta` (`id_bicicleta`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Volcado de datos para la tabla `reserva`
@@ -116,7 +151,9 @@ CREATE TABLE IF NOT EXISTS `reserva` (
 
 INSERT INTO `reserva` (`id_reserva`, `fecha`, `horaInicio`, `horaFin`, `id_Usuario`, `id_Centro`, `id_bicicleta`) VALUES
 (9, '2014-02-01', 8, 9, 3, 4, 7),
-(10, '2014-02-01', 8, 12, 3, 5, 10);
+(10, '2014-02-01', 8, 12, 3, 5, 10),
+(11, '2014-02-01', 8, 10, 3, 1, 2),
+(12, '2014-02-01', 8, 9, 3, 4, 8);
 
 -- --------------------------------------------------------
 
@@ -154,6 +191,18 @@ ALTER TABLE `arbolsolar`
 --
 ALTER TABLE `bicicleta`
   ADD CONSTRAINT `bicicleta_ibfk_1` FOREIGN KEY (`id_Centro`) REFERENCES `centro` (`id_centro`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `datosarbol`
+--
+ALTER TABLE `datosarbol`
+  ADD CONSTRAINT `datosarbol_ibfk_1` FOREIGN KEY (`id_arbolsolar`) REFERENCES `arbolsolar` (`id_ArbolSolar`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `datosbicicleta`
+--
+ALTER TABLE `datosbicicleta`
+  ADD CONSTRAINT `datosbicicleta_ibfk_1` FOREIGN KEY (`id_bicicleta`) REFERENCES `bicicleta` (`id_bicicleta`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `reserva`
