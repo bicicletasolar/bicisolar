@@ -17,12 +17,11 @@ class ArbolSolar {
 
     private $id_ArbolSolar;
     private $centro; //Relacion con el centro
-    private $bateria;
 
-    function __construct($id_ArbolSolar,$centro,Bateria $bateria)
+
+    function __construct($id_ArbolSolar,$centro)
     {
-        $this->setBateria($bateria);
-        $this->setCentro($centro);
+        $this->setIdArbolSolar($id_ArbolSolar);
         if($centro){
             $this->setCentro($centro);
         }
@@ -63,22 +62,6 @@ class ArbolSolar {
 
         return $this->centro;
 
-    }
-
-    /**
-     * @param \Bicicleta_solar\Modelo\Base\Bateria $bateria
-     */
-    public function setBateria($bateria)
-    {
-        $this->bateria = $bateria;
-    }
-
-    /**
-     * @return \Bicicleta_solar\Modelo\Base\Bateria
-     */
-    public function getBateria()
-    {
-        return $this->bateria;
     }
 
 

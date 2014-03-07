@@ -14,7 +14,6 @@ require_once __DIR__."/../BD/bdReserva.php";
 
 class Bicicleta {
     public $id_bicicleta;
-    private $bateria;
     private $centro;
     private $reserva;
 
@@ -25,10 +24,7 @@ class Bicicleta {
         $this->setCentro($centro);
         $this->setReserva($reserva);
     }
-    private function __construct2($id_bicicleta=null,Bateria $bateria){
-        $this->setBateria($bateria);
-        $this->setIdBicicleta($id_bicicleta);
-    }
+
 
 
     public function __construct()
@@ -42,9 +38,6 @@ class Bicicleta {
                 break;
             case 1:
                 $this->__construct1($args[0]);
-                break;
-            case 2:
-                $this->__construct2($args[0],$args[1]);
                 break;
             case 3:
                 $this->__construct1($args[0],$args[1],$args[2]);
