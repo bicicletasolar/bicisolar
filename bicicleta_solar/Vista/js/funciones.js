@@ -51,7 +51,7 @@ function meses(){
 function mesAnt(){
 
     if(mes!=0){
-        vaciarHoras()
+        vaciarHoras();
         diames=1;
         mes--;
         var mesActual = new Date(mesesIn[mes]+" "+diames +", "+anio);
@@ -64,6 +64,7 @@ function mesAnt(){
 
         document.getElementById("mes").innerHTML=meses[mes];
         cargarDias();
+        pintarOcupados();
     }else{
         return false;
     }
@@ -72,7 +73,8 @@ function mesAnt(){
 }
 function mesPos(){
     if(mes!=11){
-        vaciarHoras()
+        vaciarHoras();
+
         mes++;
         diames=1;
         var mesActual = new Date(mesesIn[mes]+" "+diames +", "+anio);
@@ -85,6 +87,7 @@ function mesPos(){
 
         document.getElementById("mes").innerHTML=meses[mes];
         cargarDias();
+        pintarOcupados();
     }else{
         return false;
     }
@@ -132,9 +135,11 @@ function semanaAnt(){
 
     }
     validarPrincipioSemana();
+    pintarOcupados();
 }
 function semanaPos(){
-    vaciarHoras()
+    vaciarHoras();
+
     if(document.getElementById("diaAnterior").style.visibility="hidden"){
         document.getElementById("diaAnterior").style.visibility="visible";
     }
@@ -153,8 +158,11 @@ function semanaPos(){
             dia7++;
         }
     }
+
     validarFinSemana();
+    pintarOcupados();
     quitarNoHabil();
+
 }
 function vaciarCampos(){
     for(x = 1; x <= 7 ; x++){
@@ -208,10 +216,12 @@ function activarHora(hora){
 
     }
     if(existe){
-        capa.src="img/si.png";
-        reserva.push(hora.id);
+            capa.src="img/si.png";
+            reserva.push(hora.id);
+
     }else{
         capa.src="img/no.png";
+
     }
 
 }
@@ -343,7 +353,7 @@ function validar(){
 }
 function vaciarHoras(){
 
-    for(var x in horasOcupadas){
+   for(var x in horasOcupadas){
         document.getElementById(horasOcupadas[x]).src="img/no.png";
     }
 
@@ -439,9 +449,10 @@ function procesarDatos(reservas){
 }
 
 function pintarOcupados(){
+    vaciarHoras();
     horasOcupadas = new Array();
     for(var i in re){
-
+       // alert("entra");
         anio2 = re[i].fecha.substr(0,4);
         mes2 = re[i].fecha.substr(5,2);
         dia2 = re[i].fecha.substr(8,2);
@@ -472,7 +483,7 @@ function pintarOcupados(){
 
                             document.getElementById(e+""+x).src="img/3.png";
                             horasOcupadas[horasOcupadas.length] = e+""+x;
-
+                            document.getElementById(e+""+x).onclick="";
                         }
 
                     }
