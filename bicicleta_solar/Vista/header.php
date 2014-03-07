@@ -31,7 +31,6 @@ else
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="dist/css/estilos.css" rel="stylesheet">
-      <link href="dist/css/estilo.css" rel="stylesheet">
       <link href="dist/css/justified-nav.css" rel="stylesheet">
       <link rel="stylesheet" href="dist/css/baterisBici.css"/>
       <meta charset="utf-8">
