@@ -26,9 +26,9 @@ class bdBateria extends bdGenerico{
 
         $conexion=parent::abrirConexion();
 
-        $sql="select * from datosarbol where id_arbolsolar='".$arbol->getIdArbolSolar()."' order by id_arbolsolar desc limit 1;";
+        $sql="select * from datosarbol where id_arbolsolar='".$arbol->getIdArbolSolar()."' order by id desc limit 1 ;";
         $rs=mysql_query($sql);
-
+         $bateria=new Bateria();
         if(mysql_num_rows($rs)==1)
         {
             $fila = mysql_fetch_assoc($rs);
@@ -45,10 +45,10 @@ class bdBateria extends bdGenerico{
 
         $conexion=parent::abrirConexion();
 
-        $sql="select * from datosbicicleta where id_bicicleta='".$bici->getIdBicicleta()."'order by id_bicicleta desc limit 1;";
+        $sql="select * from datosbicicleta where id_bicicleta='".$bici->getIdBicicleta()."'order by id desc limit 1;";
         $rs=mysql_query($sql);
 
-
+        $bateria=new Bateria();
         if(mysql_num_rows($rs)==1)
         {
             $fila = mysql_fetch_assoc($rs);
