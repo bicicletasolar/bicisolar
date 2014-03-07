@@ -64,9 +64,9 @@ class BdGenerico {
             case "Arbol":
                 while($fila=mysql_fetch_assoc($rs))
                 {
-                    $bateria=new Bateria($fila['corriente'],$fila['tension'],$fila['carga']);
+
                     $centro=new Centro($fila['id_centro']);
-                    $objetos[]=new ArbolSolar($fila['id_Arbol_solar'],$centro,$bateria);
+                    $objetos[]=new ArbolSolar($fila['id_Arbol_solar'],$centro);
                 }
                 break;
             case "Bici":

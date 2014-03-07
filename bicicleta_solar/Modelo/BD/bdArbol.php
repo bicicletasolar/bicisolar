@@ -25,7 +25,7 @@ class bdArbol extends BdGenerico{
         if(mysql_affected_rows($query) == 1)
         {
             $fila = mysql_fetch_assoc($rs);
-            $centro = new Centro();
+            $centro = new Centro($fila['id_centro'],$fila['nombre'],$fila['direccion']);
         }
 
         parent:: cerrarConexion($conexion);
