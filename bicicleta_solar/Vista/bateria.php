@@ -243,7 +243,7 @@ use bicicleta_solar\Controlador;
             <li><a href="#" id="act">Presentación</a></li>
             <li><a href="reservas.php">Reservas</a></li>
             <li><a href="#">Proyecto</a></li>
-            <li><a href="#">Participantes</a></li>
+            <li><a href="participantes.php">Participantes</a></li>
             <li><a href="#">Patricionadores</a></li>
             <li class="active"><a href="bateria.php">Baterías</a></li>
         </ul>
