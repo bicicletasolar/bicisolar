@@ -116,6 +116,9 @@ use bicicleta_solar\Controlador;
         itv_general = setInterval(prog_general, 100);
         itv_bici1 = setInterval(prog_bici1, 100);
         itv_bici2 = setInterval(prog_bici2, 100);
+        //t_general=setTimeout("llamadaAjax_general()",9000);
+        //t_bici1=setTimeout("llamadaAjax_bici1()",9000);
+        //t_bici2=setTimeout("llamadaAjax_bici2()",9000);
         crearSelect();
     }
     function vaciarCampos(){
@@ -125,6 +128,20 @@ use bicicleta_solar\Controlador;
             capa.remove(0);
         }
         capa.options[0] = new Option("Selecciona");
+    }
+    function llamadaAjax_general()
+    {
+        crearObjeto();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+            {
+                progressnum_general.innerHTML = xmlhttp.responseText + " %";
+            }
+        }
+
+        xmlhttp.open("POST","http://..../carga_general.php", true);
+        xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded; charset=utf-8');
+        xmlhttp.send("id_arbol=1");
     }
 </script>
 </head>
