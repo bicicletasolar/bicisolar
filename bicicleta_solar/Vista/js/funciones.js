@@ -464,11 +464,15 @@ function pintarOcupados(){
                             horainicio2 = 0+horainicio2;
                         if(horafin2<10)
                             horafin2 = 0+horafin2;
-
                         for(e = horainicio2 ; e < horafin2 ; e++){
+                            if(e<10 && e !="08")
+                                e = 0+""+e;
+                            if(e == "009")
+                                e = "09";
 
                             document.getElementById(e+""+x).src="img/3.png";
                             horasOcupadas[horasOcupadas.length] = e+""+x;
+
                         }
 
                     }
