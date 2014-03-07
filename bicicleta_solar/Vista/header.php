@@ -28,7 +28,7 @@ else
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+      <link rel="shortcut icon" href="img/favicon.ico" />
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="dist/css/estilos.css" rel="stylesheet">
       <link href="dist/css/justified-nav.css" rel="stylesheet">
